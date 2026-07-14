@@ -20,7 +20,7 @@ Do not document here:
 - Open-core sales pitches or commercial product roadmaps  
 - Private business plans  
 
-Those topics, if discussed at all, stay private between the owner and trusted agents — outside this public tree.
+Those topics, if discussed at all, stay in a **separate private** owner-only business planning repository — never in this public tree.
 
 ## How to treat optional future themes
 
