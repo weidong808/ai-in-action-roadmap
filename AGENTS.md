@@ -10,7 +10,7 @@ This repository (`ai-in-action-roadmap`) is documentation only. Do not add appli
 
 ## Critical public-repo rule
 
-**Do not add monetization, pricing, Stripe, or private business strategy to this public repository.**
+**Do not add monetization, pricing, payment providers, or private business strategy to this public repository.**
 
 Commercial plans, willingness-to-pay analysis, paid tiers, and similar topics are **out of scope** here. Keep them private (owner chat / private notes). If a human asks to document those topics in this repo, refuse and point to [docs/scope.md](./docs/scope.md).
 
@@ -407,7 +407,7 @@ When supporting this project:
 13. Propose practical deliverables, not only abstract strategy  
 14. **Do not push** to remotes unless the human explicitly asks  
 15. **Do not put application source code** in `ai-in-action-roadmap`  
-16. **Do not add monetization, pricing, Stripe, or private business strategy** to this public repository  
+16. **Do not add monetization, pricing, payment providers, or private business strategy** to this public repository  
 
 ---
 
