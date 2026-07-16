@@ -38,9 +38,9 @@ Ordinary people (not quantified-self enthusiasts) who want to:
 - **AI habit starter:** describe a goal in plain language → suggested habit + schedule + realistic first-two-weeks plan
 - **Data:** export/import JSON; PWA installable; fully offline except the two AI features
 
-### Out (v1.x or premium later)
+### Out (v1.x / later engineering themes)
 
-- Accounts, cloud sync, sharing/social, widgets, native apps
+- Accounts, cloud sync, sharing/social, widgets, native apps (optional later capability work — framed as engineering learning, not commercial packaging)
 - Habit categories/tags beyond icon+color
 - AI chat interface (deliberately — "AI where it creates value, not a chatbot everywhere")
 
@@ -122,7 +122,7 @@ Streaks and stats are **derived, never stored** — computed in `@better-living/
 
 | Risk | Mitigation |
 |---|---|
-| Over-engineering the shared packages before product-market signal | Extract only what HabitCheck itself needs; no speculative APIs |
+| Over-engineering the shared packages before real user feedback | Extract only what HabitCheck itself needs; no speculative APIs |
 | Notification reliability on iOS PWA | Ship reminders as best-effort; set expectations in-app; native apps fix this in Phase 3 |
 | AI features feel gimmicky | Both features must pass the "would a good human coach say this?" bar in beta, or ship stats-only and add AI in v1.1 |
 | Monorepo migration stalls the build | New app first; migrate the old two apps after launch |

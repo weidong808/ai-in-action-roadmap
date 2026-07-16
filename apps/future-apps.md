@@ -9,6 +9,7 @@ AI in Action
 │
 ├── RetireCheck      ← live
 ├── SleepCheck       ← live
+├── HabitCheck       ← next (build spec)
 ├── FitnessCheck     ← backlog
 ├── NutritionCheck   ← backlog
 ├── MindCheck        ← backlog
@@ -16,10 +17,13 @@ AI in Action
 └── Other domain apps
 ```
 
+See [habitcheck.md](./habitcheck.md) for the AI in Action #3 build spec.
+
 ## Candidates
 
 | App | Problem space | Caution |
 |-----|---------------|---------|
+| **HabitCheck** | Build/break habits, streaks, local AI weekly review | Local-first; AI only on opt-in aggregates |
 | **FitnessCheck** | Habit / activity tracking with practical UX | Avoid medical claims |
 | **NutritionCheck** | Meal / habit support | Avoid diet-medical claims |
 | **MindCheck** | Focus / stress / journaling-style support | Wellness framing; mental-health claims carefully |

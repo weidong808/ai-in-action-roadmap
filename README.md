@@ -50,12 +50,12 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
-App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/future-apps.md](./apps/future-apps.md)
+App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/habitcheck.md](./apps/habitcheck.md) (build spec · #3) · [apps/future-apps.md](./apps/future-apps.md)
 
 ## Current state (summary)
 
 - RetireCheck and SleepCheck are live educational demos
-- AI in Action content series is active (RetireCheck and SleepCheck hub articles published; LinkedIn #2 optional)
+- AI in Action content series is active (RetireCheck and SleepCheck hub + LinkedIn articles published; short videos live)
 - No authentication yet; apps are local-first
 - Shared technical capabilities are planned as learning milestones, not a product platform pitch
 - Early feedback stage

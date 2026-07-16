@@ -23,7 +23,8 @@ Not: design everything first. Not: force a platform before reuse is proven. Not:
 - [x] Cursor in Action / RetireCheck article published
 - [x] AI in Action series launched
 - [x] SleepCheck article published on hub ([weidong-shi.com/articles/ai-in-action-sleepcheck](https://weidong-shi.com/articles/ai-in-action-sleepcheck))
-- [ ] SleepCheck LinkedIn pulse / AI in Action #2 video
+- [x] SleepCheck LinkedIn pulse — [AI in Action #2](https://www.linkedin.com/pulse/ai-action-2-from-idea-sleepcheck-weidong-shi-0fwrc)
+- [x] AI in Action short videos on hub ([weidong-shi.com](https://weidong-shi.com))
 - [x] SleepCheck architecture documented ([SleepCheck/docs/architecture.md](https://github.com/weidong808/SleepCheck/blob/main/docs/architecture.md))
 - [x] Public roadmap repository launched ([ai-in-action-roadmap](https://github.com/weidong808/ai-in-action-roadmap))
 - [ ] Shared cross-app architecture synthesized beyond per-app docs
