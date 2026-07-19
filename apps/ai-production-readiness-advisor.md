@@ -1,9 +1,10 @@
 # AI Production Readiness Advisor — AI in Action #3
 
-**Status:** Local MVP complete (M1–M5 polish); public deploy TBD  
+**Status:** Live on Vercel; custom domain DNS pending  
 **Series role:** Engineering / architecture showcase (not a Better Living “Check” wellness app)  
-**Repo (local):** `ai-production-readiness-advisor`  
-**Proposed URL:** `readiness.weidong-shi.com` (owner confirmation open)
+**Repo:** https://github.com/weidong808/ai-production-readiness-advisor  
+**Live demo:** https://ai-production-readiness-advisor.vercel.app  
+**Custom domain:** https://readiness.weidong-shi.com (Cloudflare DNS pending)
 
 ## Purpose
 
