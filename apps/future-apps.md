@@ -7,22 +7,25 @@ Candidate “Check” applications for the AI in Action educational portfolio. *
 ```
 AI in Action
 │
-├── RetireCheck      ← live
-├── SleepCheck       ← live
-├── HabitCheck       ← next (build spec)
-├── FitnessCheck     ← backlog
-├── NutritionCheck   ← backlog
-├── MindCheck        ← backlog
-├── HealthCheck      ← backlog (extra regulatory caution)
+├── RetireCheck                         ← live
+├── SleepCheck                          ← live
+├── AI Production Readiness Advisor     ← App #3 engineering showcase (local MVP)
+├── HabitCheck                          ← Better Living candidate (build spec)
+├── FitnessCheck                        ← backlog
+├── NutritionCheck                      ← backlog
+├── MindCheck                           ← backlog
+├── HealthCheck                         ← backlog (extra regulatory caution)
 └── Other domain apps
 ```
 
-See [habitcheck.md](./habitcheck.md) for the AI in Action #3 build spec.
+- App #3 engineering showcase: [ai-production-readiness-advisor.md](./ai-production-readiness-advisor.md)  
+- Better Living candidate (separate track): [habitcheck.md](./habitcheck.md)
 
 ## Candidates
 
 | App | Problem space | Caution |
 |-----|---------------|---------|
+| **AI Production Readiness Advisor** | Guided production-readiness assessment for AI features | Advisory only — not certification/audit |
 | **HabitCheck** | Build/break habits, streaks, local AI weekly review | Local-first; AI only on opt-in aggregates |
 | **FitnessCheck** | Habit / activity tracking with practical UX | Avoid medical claims |
 | **NutritionCheck** | Meal / habit support | Avoid diet-medical claims |
