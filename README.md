@@ -48,7 +48,7 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 |-----|--------|----------|--------|
 | **RetireCheck** | Live | [retirecheck.weidong-shi.com](https://retirecheck.weidong-shi.com) | [Retirement-Calculator](https://github.com/weidong808/Retirement-Calculator) |
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
-| **AI Production Readiness Advisor** | Live (Vercel) | [ai-production-readiness-advisor.vercel.app](https://ai-production-readiness-advisor.vercel.app) · `readiness.weidong-shi.com` (DNS pending) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
+| **AI Production Readiness Advisor** | Live | [readiness.weidong-shi.com](https://readiness.weidong-shi.com) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
 App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (Better Living candidate) · [apps/future-apps.md](./apps/future-apps.md)

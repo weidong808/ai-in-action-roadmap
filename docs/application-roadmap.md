@@ -7,7 +7,7 @@ AI in Action (educational portfolio)
 │
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
-├── AI Production Readiness Advisor     ← App #3 (local MVP; deploy TBD)
+├── AI Production Readiness Advisor     ← App #3 live (readiness.weidong-shi.com)
 ├── HabitCheck / other Check apps       ← backlog candidates
 └── Future domain apps                  ← backlog
 ```
@@ -20,7 +20,7 @@ AI in Action (educational portfolio)
 |-----|--------|----------------|
 | [RetireCheck](../apps/retirecheck.md) | Live | End-to-end AI-assisted delivery with serious domain logic |
 | [SleepCheck](../apps/sleepcheck.md) | Live | Idea → product thinking → maintainable wellness PWA |
-| [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live (Vercel; custom DNS pending) | Deterministic readiness gates + advisory LLM narrative / evals |
+| [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live | Deterministic readiness gates + advisory LLM narrative / evals |
 
 ## Near-term app work (not new domains)
 
