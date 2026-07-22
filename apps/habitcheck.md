@@ -2,7 +2,7 @@
 
 **Recover after missed days — local-first weekly habit OS with kind recovery and first-class AI coaching.**  
 *AI in Action #4 · Better Living candidate · Spec v5 · July 2026*  
-**Status:** Discovery complete — implementation-ready MVP spec locked (**v5 AI-forward**) · **P0 scaffold live** at [HabitCheck](https://github.com/weidong808/HabitCheck)
+**Status:** MVP **P0–P7 code complete** on [HabitCheck](https://github.com/weidong808/HabitCheck) (`main`, CI green) · public deploy/domain + hub case study still pending
 
 Related:
 
@@ -107,11 +107,11 @@ Full notes: [habitcheck-architecture.md](./habitcheck-architecture.md).
 
 | Phase | Deliverable |
 |-------|-------------|
-| Discovery | Brief · decisions · **MVP spec v5** · architecture (current) |
-| P0–P2 | Scaffold · tracking tests · Today loop |
-| P3–P4 | Recovery, pause, Facts review, deterministic ±1 |
-| P5–P6 | AI platform + all required coach features |
-| P7 | Polish · ship |
+| Discovery | Brief · decisions · **MVP spec v5** · architecture ✓ |
+| P0–P2 | Scaffold · tracking tests · Today loop ✓ |
+| P3–P4 | Recovery, pause, Facts review, deterministic ±1 ✓ |
+| P5–P6 | AI platform + all required coach features ✓ |
+| P7 | Polish · ship (app code ✓ · Vercel/DNS/hub pending) |
 | Content | Hub `/work` + `/insights`, LinkedIn |
 
 Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mvp-specification.md) — **AI is a ship gate**.

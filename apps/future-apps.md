@@ -10,7 +10,7 @@ AI in Action
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
 ├── AI Production Readiness Advisor     ← App #3 engineering showcase · live
-├── HabitCheck                          ← App #4 · Better Living · discovery complete
+├── HabitCheck                          ← App #4 · Better Living · P0–P7 code complete
 ├── FitnessCheck                        ← backlog
 ├── NutritionCheck                      ← backlog
 ├── MindCheck                           ← backlog
@@ -19,14 +19,14 @@ AI in Action
 ```
 
 - App #3 engineering showcase: [ai-production-readiness-advisor.md](./ai-production-readiness-advisor.md)  
-- App #4 Better Living (next build): [MVP spec](../docs/discovery/habitcheck-02-mvp-specification.md) · [habitcheck.md](./habitcheck.md) · [architecture](./habitcheck-architecture.md)
+- App #4 Better Living (code complete · deploy pending): [MVP spec](../docs/discovery/habitcheck-02-mvp-specification.md) · [habitcheck.md](./habitcheck.md) · [architecture](./habitcheck-architecture.md)
 
 ## Candidates
 
 | App | Problem space | Caution |
 |-----|---------------|---------|
 | **AI Production Readiness Advisor** | Guided production-readiness assessment for AI features | Advisory only — not certification/audit · **live** |
-| **HabitCheck** | Weekly targets, kind recovery, first-class AI coach OS (v1.0) | Local-first · **P0 scaffold** · [repo](https://github.com/weidong808/HabitCheck) |
+| **HabitCheck** | Weekly targets, kind recovery, first-class AI coach OS (v1.0) | Local-first · **P0–P7 code complete** · deploy pending · [repo](https://github.com/weidong808/HabitCheck) |
 | **FitnessCheck** | Habit / activity tracking with practical UX | Avoid medical claims |
 | **NutritionCheck** | Meal / habit support | Avoid diet-medical claims |
 | **MindCheck** | Focus / stress / journaling-style support | Wellness framing; mental-health claims carefully |

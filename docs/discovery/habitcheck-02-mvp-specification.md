@@ -1,7 +1,7 @@
 # HabitCheck — MVP Specification (Implementation-Ready)
 
 **Series:** AI in Action #4 · Better Living candidate  
-**Status:** Discovery complete · ready for scaffold after owner go  
+**Status:** Discovery complete · **P0–P7 code complete** on [HabitCheck](https://github.com/weidong808/HabitCheck) · public deploy/domain pending 
 **Spec version:** v5 · July 2026 (**AI-forward**)  
 **Parents:** [brief](./habitcheck-00-discovery-brief.md) · [product decisions](./habitcheck-01-product-decisions.md) · [architecture](../../apps/habitcheck-architecture.md) · [build spec](../../apps/habitcheck.md)
 
