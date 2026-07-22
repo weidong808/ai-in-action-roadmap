@@ -26,7 +26,7 @@ AI in Action
 | App | Problem space | Caution |
 |-----|---------------|---------|
 | **AI Production Readiness Advisor** | Guided production-readiness assessment for AI features | Advisory only — not certification/audit · **live** |
-| **HabitCheck** | Weekly targets, kind recovery, first-class AI coach OS (v1.0) | Local-first; wellness framing · **discovery complete (v5)** |
+| **HabitCheck** | Weekly targets, kind recovery, first-class AI coach OS (v1.0) | Local-first · **P0 scaffold** · [repo](https://github.com/weidong808/HabitCheck) |
 | **FitnessCheck** | Habit / activity tracking with practical UX | Avoid medical claims |
 | **NutritionCheck** | Meal / habit support | Avoid diet-medical claims |
 | **MindCheck** | Focus / stress / journaling-style support | Wellness framing; mental-health claims carefully |

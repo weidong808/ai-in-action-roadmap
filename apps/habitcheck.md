@@ -2,7 +2,7 @@
 
 **Recover after missed days — local-first weekly habit OS with kind recovery and first-class AI coaching.**  
 *AI in Action #4 · Better Living candidate · Spec v5 · July 2026*  
-**Status:** Discovery complete — implementation-ready MVP spec locked (**v5 AI-forward**)
+**Status:** Discovery complete — implementation-ready MVP spec locked (**v5 AI-forward**) · **P0 scaffold live** at [HabitCheck](https://github.com/weidong808/HabitCheck)
 
 Related:
 
