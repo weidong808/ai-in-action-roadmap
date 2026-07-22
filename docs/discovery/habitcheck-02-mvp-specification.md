@@ -2,20 +2,22 @@
 
 **Series:** AI in Action #4 · Better Living candidate  
 **Status:** Discovery complete · ready for scaffold after owner go  
-**Spec version:** v4 · July 2026  
+**Spec version:** v5 · July 2026 (**AI-forward**)  
 **Parents:** [brief](./habitcheck-00-discovery-brief.md) · [product decisions](./habitcheck-01-product-decisions.md) · [architecture](../../apps/habitcheck-architecture.md) · [build spec](../../apps/habitcheck.md)
 
-This document is the **implementation contract** for HabitCheck v1.0. Tracking math and AI boundaries here override earlier drafts that deferred AI or used daily/weekday schedule kinds.
+This document is the **implementation contract** for HabitCheck v1.0. Tracking math remains deterministic; **AI coaching is a first-class product surface** (not optional polish). Overrides v3–v4 drafts that deferred or thinned AI.
 
 ---
 
 ## 0. One-liner
 
-**HabitCheck** helps busy adults build healthier routines with flexible weekly targets, kind recovery after misses, and optional AI coaching — local-first, private by default.
+**HabitCheck** is a local-first weekly habit coach: flexible targets, kind recovery after misses, and AI guidance at every key moment — private by default, facts always honest.
 
 **Promise:** Recover after missed days (without shame, without inflating completion).
 
-**Differentiator vs siblings:** personal habit coach (comebacks · weekly insights · plan adjustments) on a deterministic weekly tracking core — not RetireCheck math, not SleepCheck sensory, not Readiness enterprise gates.
+**Differentiator vs siblings:** a **personal habit operating system** — AI in setup, recovery, review, and plan changes — on a deterministic weekly core. Not RetireCheck math, not SleepCheck sensory, not Readiness enterprise gates.
+
+**AI weight (locked):** ~45–55% of product story and build. Tracking is the foundation; every key moment has a coach surface. Offline/declined AI → app still fully usable.
 
 ---
 
@@ -25,7 +27,7 @@ This document is the **implementation contract** for HabitCheck v1.0. Tracking m
 |------|------|
 | Audience | Busy adults building healthier routines |
 | Promise | Recover after missed days |
-| Qualities | Private · Simple · Encouraging · Optional AI guidance |
+| Qualities | Private · Simple · Encouraging · **AI-powered coaching (first-class)** |
 | Active habits | **Up to 3** |
 | Habit type (v1) | **Build only** (break-habits deferred) |
 | Schedule | **Flexible weekly target** only (N of 7, N = 1–7) |
@@ -33,24 +35,25 @@ This document is the **implementation contract** for HabitCheck v1.0. Tracking m
 | Formal miss | **Only when the week ends** without meeting target |
 | Mid-week signal | Soft **at risk** when remaining days cannot meet target |
 | Check-in | Status + optional difficulty (`easy` \| `manageable` \| `hard`) |
-| Progress metrics | **Weekly consistency %** (primary) + **successful recoveries** (secondary) |
-| Recovery UX | User chooses path: smaller version · reschedule in week · choose next restart day · Ask AI comeback |
+| Progress metrics | **Weekly consistency %** · **successful recoveries** · **difficulty pattern** (three separate concepts) |
+| Recovery UX | User chooses path: smaller version · reschedule in week · choose next restart day · **AI Comeback Coach** |
 | Successful recovery | User **followed the selected recovery path** (action completed) |
 | Smaller version counting | **Recovery, not full completion** toward weekly target |
-| Smaller version definition | **Preset at setup + customize** at recovery |
-| Setup fields | Name · weekly target · motivation · smaller version |
+| Smaller version definition | **AI-generated or preset at setup + customize** at recovery |
+| Setup fields | Name · weekly target · motivation · smaller version · optional first-two-weeks ramp |
 | Target change trigger (down) | After **two consecutive difficult weeks** |
 | Consistently easy | **Two consecutive easy weeks** → ask maintain or progress |
-| Target change UX | **Accept · edit · dismiss** (never auto-apply); edits/suggestions take effect **next Monday** |
-| Pause | **Either:** indefinite (no progress penalty) **or** until return date |
-| Mid-week pause/resume | Week marked **`partially_paused`** (excluded from averages/triggers) |
+| Target change UX | Deterministic ±1 + **AI Plan Adjuster explanation** · accept / edit / dismiss · **effective next Monday** |
+| Pause | **Either:** indefinite **or** until return date |
+| Mid-week pause/resume | Week marked **`partially_paused`** |
 | Pause end (dated) | **Resume automatically + reminder** |
-| Reminders | Optional daily **in-app** at chosen time; system notification only when reliably supported |
-| Weekly review content | Balanced: consistency · recoveries · difficulty → adjustments |
-| Weekly review availability | After Sunday ends · **view anytime** (on-demand) |
-| AI in v1.0 | Required: Weekly Review · personalized comebacks. Optional if time permits: Habit Starter. Target numbers remain deterministic; AI explanation may follow in v1.1. |
+| Reminders | Optional daily **in-app** at chosen time; system notification best-effort |
+| Weekly review | Deterministic stats + **required AI structured insight cards** |
+| Weekly review availability | After Sunday ends · **view anytime** |
+| AI in v1.0 | **All required:** Habit Starter · Comeback Coach · Weekly Review · Plan Adjuster · Smart smaller-version |
 | AI data | **Selected summaries only** · opt-in **per AI action** |
-| AI UI | **No chat** |
+| AI UI | **No free chat** — guided coach moments only; **Facts vs Coach** layout |
+| Engineering shine | Privacy gate · versioned prompts · cost caps · streaming · eval fixtures · fail closed |
 | Repo | Single Next.js app (no Turborepo day one) |
 | Host | `habitcheck.weidong-shi.com` |
 
@@ -61,10 +64,10 @@ This document is the **implementation contract** for HabitCheck v1.0. Tracking m
 ### 2.1 First-run onboarding
 
 1. Welcome + wellness disclaimer (not medical advice).
-2. Privacy posture: local-first; AI optional; summaries-only when used.
-3. Optional: **Habit Starter** (AI) — plain-language goal → proposed habit (name, target, motivation, smaller version) → accept / edit / dismiss.
-4. Or: manual create (same fields).
-5. Land on **Today** with 1 habit (encourage staying ≤3).
+2. Privacy posture: local-first; AI coaching available with summary-only sends; per-action consent.
+3. **Habit Starter (AI, required path, skippable to manual):** plain-language goal → proposed habit (name, target, motivation, smaller version, first-two-weeks ramp) → accept / edit / dismiss.
+4. Manual create remains available (same fields); **Smart smaller-version** can still generate/refine the micro-action.
+5. Land on **Today** with 1 habit (encourage staying ≤3). UI shows **Facts** (week target) clearly; coach copy is secondary.
 
 ### 2.2 Daily check-in (happy path)
 
@@ -75,55 +78,49 @@ This document is the **implementation contract** for HabitCheck v1.0. Tracking m
 
 ### 2.3 Mid-week at risk
 
-1. Tracking detects remaining calendar days in Mon–Sun week cannot reach `target` given current `done` count.
-2. Soft banner: “This week is at risk” + CTA **Choose a recovery path** (does **not** mark formal miss).
-3. User may dismiss; banner can return once per day max.
+1. Tracking detects remaining calendar days cannot reach `target`.
+2. Soft banner (recovery language) + CTA **Choose a recovery path**.
+3. Prefer opening **AI Comeback Coach** as the highlighted path (user can still pick non-AI paths).
+4. User may dismiss; banner can return once per day max.
 
 ### 2.4 Missed week (Sunday ended)
 
-1. After local Sunday 24:00 boundary: if `doneCount < target` → week status = **missed**.
+1. After local Sunday 24:00: if `doneCount < target` → week status = **missed**.
 2. Recovery sheet (choose one):
-   - **Do a smaller version today** (preset; editable) → on complete → **successful recovery** (not full completion).
-   - **Reschedule within the week** — N/A after week closed; after miss, interpret as **plan one catch-up completion in the new week** that counts as recovery action, not toward previous week.
-   - **Choose my next restart day** — select a date in the current or following week; counts as recovery when the linked normal completion occurs on that date.
-   - **Ask AI for a personalized comeback** — opt-in; summary payload; returns suggested micro-action → accept / edit / dismiss → complete → recovery.
-3. Recording recovery increments `successfulRecoveries`; does not rewrite prior week’s consistency truth.
+   - **Do a smaller version today** (AI-refined or preset; editable) → complete → **successful recovery** (not full completion).
+   - **Reschedule within the week** — after miss: plan one catch-up in the **new** week (linked recovery).
+   - **Choose my next restart day** — select date in current or following week; recovery when linked normal completion lands on that date.
+   - **AI Comeback Coach** — opt-in → **2–3 micro-options** + short encouragement → pick / edit → complete → recovery.
+3. Recovery never rewrites prior week’s consistency truth.
 
-**Reschedule within week (while week still open):** user picks a future day in the current Mon–Sun week as intended catch-up; completing `done` that day counts as **full completion** toward target (normal). If they chose recovery *because of a daily slip* but week not missed yet, smaller-version still counts as recovery only.
+**Reschedule while week still open:** future day in current Mon–Sun; normal `done` counts toward target. Smaller-version remains recovery-only.
 
 ### 2.5 Weekly review
 
-1. Available anytime after prior week ends (Mon 00:00 onward for that closed week).
-2. Screen shows deterministic stats: consistency %, recoveries, difficulty mix, at-risk events — as **three separate concepts**, never blended into one score.
-3. Optional **AI Weekly Review** — opt-in → privacy gate → narrative balanced across consistency / recoveries / difficulty + one suggestion.
-4. Offline / decline → stats-only view.
+1. Available anytime after prior week ends.
+2. **Facts panel:** consistency %, recoveries, difficulty mix, at-risk events (deterministic, separate metrics).
+3. **Coach panel (required AI):** structured insight cards (one card per theme: consistency · recoveries · difficulty) + one next-week move → streaming OK.
+4. Offline / decline → Facts-only view (still a complete review).
 
-### 2.6 Target suggestion (down)
+### 2.6 Plan Adjuster (down)
 
-1. Two consecutive weeks classified **difficult** (see scoring).
-2. Deterministic logic proposes `max(1, currentTarget - 1)`; AI may explain the recommendation but cannot choose an arbitrary target.
-3. In-app prompt (not every review): suggested lower weekly target.
-4. User: accept / edit / dismiss. Dismiss snoozes until the next qualifying pair (or manual ask from habit settings).
-5. Accepted/edited target applies at the **next Monday** boundary; current week keeps its snapshot target.
+1. Two consecutive **difficult** weeks.
+2. Deterministic proposal: `max(1, currentTarget - 1)`.
+3. **AI Plan Adjuster** explains *why* this range helps (cannot invent another number).
+4. Accept / edit / dismiss; apply **next Monday**.
 
-### 2.7 Progression (up)
+### 2.7 Plan Adjuster (up)
 
-1. Two consecutive weeks classified **easy**.
-2. Prompt: maintain or progress? If progress → deterministic `min(7, currentTarget + 1)`; AI may explain → accept / edit / dismiss.
-3. Accepted change applies next Monday.
+1. Two consecutive **easy** weeks.
+2. Maintain or progress? Progress → `min(7, currentTarget + 1)` + AI explanation → accept / edit / dismiss → next Monday.
 
 ### 2.8 Pause / resume
 
-1. Habit settings → Pause → indefinite **or** until date.
-2. While paused: no expectation; full paused weeks are excluded from consistency.
-3. A pause or resume during a week marks that week `partially_paused`; check-ins remain visible, but the week is excluded from consistency and two-week triggers.
-4. Dated pause ends → habit active again + best-effort local reminder (if supported and enabled); otherwise show an in-app banner on next open.
-5. Full scoring resumes the next Monday after a partial week.
+Unchanged from v4: indefinite or until-date; mid-week → `partially_paused`; dated end resumes + reminder/banner; full scoring next Monday.
 
 ### 2.9 Habit lifecycle
 
-- Create / edit / archive (archive frees a slot toward the 3-active cap).
-- Active cap enforced at create time.
+Create / edit / archive; active+paused cap ≤3.
 
 ---
 
@@ -131,16 +128,17 @@ This document is the **implementation contract** for HabitCheck v1.0. Tracking m
 
 | Route / surface | Purpose |
 |-----------------|--------|
-| `/` Today | Check-in, week progress rings, at-risk / recovery CTAs |
-| `/habits/new` | Manual create or entry to Habit Starter |
-| `/habits/[id]` | Detail: heatmap-lite, motivation, edit, pause, archive |
-| `/habits/[id]/edit` | Edit fields including smaller version + target |
-| `/review` | Closed-week picker + stats; AI review CTA |
-| `/settings` | Theme, reminders master, export/import, about |
+| `/` Today | Check-in, week rings, at-risk / recovery CTAs, coach entry points |
+| `/habits/new` | Habit Starter (primary) + manual create |
+| `/habits/[id]` | Detail: Facts + optional Coach actions; heatmap-lite; pause/archive |
+| `/habits/[id]/edit` | Edit fields; Smart smaller-version regenerate |
+| `/review` | Facts vs Coach weekly review |
+| `/settings` | Theme, reminders, AI master toggle, export/import, about |
 | `/privacy` | Privacy + wellness + AI disclosure |
-| Modals | Recovery path sheet · AI consent · target change · Habit Starter result |
+| Modals | Recovery sheet · Comeback Coach (2–3 options) · Plan Adjuster · Starter result · AI consent |
 
-**Chrome:** skip link, mobile nav, theme toggle (parity with siblings). No dashboard clutter on first viewport — Today is one composition: habits + this week’s progress.
+**Chrome:** skip link, mobile nav, theme toggle. Today = one composition (habits + this week).  
+**UI rule:** label **Facts** (code) vs **Coach** (AI) wherever both appear — portfolio-readable trust pattern.
 
 ---
 
@@ -154,13 +152,14 @@ type Habit = {
   name: string;
   motivation: string;
   weeklyTarget: number; // 1–7
-  smallerVersion: string; // preset comeback text
+  smallerVersion: string;
+  /** Optional AI Starter output; display-only guidance for first 14 days */
+  firstTwoWeeksRamp?: string[];
   color?: string;
   icon?: string;
   status: "active" | "paused" | "archived";
-  pause: null | { kind: "indefinite" } | { kind: "until"; untilDate: string }; // YYYY-MM-DD
-  reminder?: { enabled: boolean; timeLocal: string }; // HH:mm
-  /** Queued target after accept/edit; applied next Monday */
+  pause: null | { kind: "indefinite" } | { kind: "until"; untilDate: string };
+  reminder?: { enabled: boolean; timeLocal: string };
   pendingWeeklyTarget?: number;
   createdAt: string;
   archivedAt?: string;
@@ -171,10 +170,10 @@ type CheckInStatus = "done" | "skipped";
 type CheckIn = {
   id: string;
   habitId: string;
-  date: string; // YYYY-MM-DD local
+  date: string;
   status: CheckInStatus;
-  difficulty?: Difficulty; // optional; typically with done
-  countsTowardTarget: boolean; // true for normal done; false for recovery-only action
+  difficulty?: Difficulty;
+  countsTowardTarget: boolean;
   recoveryEventId?: string;
   loggedAt: string;
 };
@@ -182,17 +181,19 @@ type CheckIn = {
 type RecoveryKind =
   | "smaller_version"
   | "reschedule_in_week"
-  | "restart_next" // user-selected restart day (not a fixed schedule slot)
+  | "restart_next"
   | "ai_comeback";
 
 type RecoveryEvent = {
   id: string;
   habitId: string;
-  triggerWeekStart: string; // Monday YYYY-MM-DD of the week that triggered recovery
+  triggerWeekStart: string;
   kind: RecoveryKind;
   status: "selected" | "completed" | "dismissed" | "expired";
   actionText?: string;
-  scheduledFor?: string; // YYYY-MM-DD for reschedule/restart path
+  /** For ai_comeback: options shown before user picks */
+  aiOptions?: string[];
+  scheduledFor?: string;
   completedOn?: string;
   linkedCheckInId?: string;
   createdAt: string;
@@ -200,9 +201,9 @@ type RecoveryEvent = {
 
 type WeekSnapshot = {
   habitId: string;
-  weekStart: string; // Monday
-  target: number; // snapshot target for that week
-  doneCount: number; // full completions only
+  weekStart: string;
+  target: number;
+  doneCount: number;
   skippedCount: number;
   status: "in_progress" | "met" | "missed" | "paused" | "partially_paused";
   difficultyCounts: { easy: number; manageable: number; hard: number };
@@ -212,100 +213,93 @@ type WeekSnapshot = {
 type Settings = {
   theme: "system" | "light" | "dark";
   remindersEnabled: boolean;
-  aiEnabled: boolean; // master; each call still confirms
+  aiEnabled: boolean;
   onboardingCompleted: boolean;
 };
 
 type AiInvocationLog = {
   id: string;
-  feature: "habit_starter" | "weekly_review" | "comeback" | "target_suggest";
+  feature:
+    | "habit_starter"
+    | "weekly_review"
+    | "comeback"
+    | "plan_adjuster"
+    | "smaller_version";
+  promptVersion: string;
   createdAt: string;
-  // no prompt/response bodies persisted by default in v1
 };
 ```
 
-**Export:** `habitcheck-export@2` — `{ version, exportedAt, habits, checkIns, recoveryEvents, settings }`.  
-(Bump from unused `@1` drafts; no production data yet.)
+**Export:** `habitcheck-export@2` — `{ version, exportedAt, habits, checkIns, recoveryEvents, settings }`.
 
-**Hard rule:** streaks, consistency %, week status, easy/difficult week labels, and at-risk are **derived** in `src/lib/tracking/` — never stored as source of truth (WeekSnapshot may be cached for UI performance but must be recomputable).
+**Hard rule:** consistency %, week status, easy/difficult, at-risk are **derived** in `src/lib/tracking/` — never source-of-truth in storage.
 
 ---
 
 ## 5. Scoring rules (deterministic)
 
+### 5.1–5.9
+
+Same authoritative rules as v4:
+
+- Mon–Sun weeks; miss only after Sunday
+- `countsTowardTarget` + one target-counting done per habit per local day
+- Recovery-only never inflates `doneCount`
+- `classifyWeek` single algorithm (missed → difficult; no ratings → neutral unless missed)
+- `partially_paused` excluded from averages/triggers
+- Target changes via `pendingWeeklyTarget` apply **next Monday**
+- At-risk assumes ≤1 full completion per day
+
+See v4 text retained below for implementers.
+
 ### 5.1 Week boundaries
 
 - Week = local Monday 00:00 → Sunday 24:00.
-- `weekStart` = Monday `YYYY-MM-DD`.
-- Formal evaluation of met/missed runs when `asOf` date is strictly after that week’s Sunday.
+- Formal met/missed when `asOf` is strictly after that week’s Sunday.
 
 ### 5.2 Full completion
 
-- A `CheckIn` with `status: "done"` and `countsTowardTarget: true` on date D counts **+1** toward `doneCount` for that week.
-- Smaller-version recovery completions are logged as recovery events (and may create a check-in tagged recovery-only) and **do not** increment `doneCount`.
-- At most one target-counting completion exists per habit per local calendar date. Editing replaces that day's target-counting state instead of adding another completion.
-- A recovery-only action may coexist on the same date but never increments `doneCount`.
+- `done` + `countsTowardTarget: true` → +1 `doneCount`.
+- Recovery-only done → never +1.
+- Edit replaces same-day target-counting state; recovery-only may coexist.
 
 ### 5.3 Weekly consistency %
 
-For a closed week with status neither `paused` nor `partially_paused`:
-
 ```
-consistency = doneCount / weeklyTarget   // clamp display 0–100%+ optional cap at 100% for UI
+consistency = doneCount / target  // UI may cap display at 100%
 ```
 
-Across weeks (habit progress): mean of closed non-paused / non-partially-paused weeks’ consistency (cap each week at 100% for averages).
+Exclude `paused` / `partially_paused` from averages. Never blend with recoveries into one score.
 
-Keep **consistency**, **successful recoveries**, and **difficulty pattern** visible as separate concepts — never merge into one score.
-
-### 5.4 Met / missed / in progress
+### 5.4 Week status
 
 | Condition | Status |
 |-----------|--------|
-| Habit is paused for the entire week | `paused` (excluded from consistency averages) |
-| Habit paused or resumed during week | `partially_paused` (excluded from averages and classification triggers) |
-| Week still open | `in_progress` |
-| Closed & `doneCount >= target` | `met` |
-| Closed & `doneCount < target` | `missed` |
+| Paused entire week | `paused` |
+| Pause/resume mid-week | `partially_paused` |
+| Open | `in_progress` |
+| Closed & doneCount ≥ target | `met` |
+| Closed & doneCount < target | `missed` |
 
-### 5.5 At risk (mid-week)
-
-Assumption: at most one qualifying target-counting completion per habit per local day.
-
-```
-remainingDays = count of days from tomorrow through Sunday inclusive (local)
-atRisk = week in_progress AND (doneCount + remainingDays) < target
-```
-
-Today can still be used: if including today as possible done:
+### 5.5 At risk
 
 ```
 possible = doneCount + (todayUnset ? 1 : 0) + daysAfterTodayThroughSunday
-atRisk = possible < target
+atRisk = in_progress && possible < target
 ```
 
 ### 5.6 Successful recovery
 
-Increment when `RecoveryEvent.status === "completed"` for a chosen path:
+`RecoveryEvent.status === "completed"` per path rules (smaller_version / reschedule / restart_next / ai_comeback). `dismissed` / `expired` do not count.
 
-| Path | Completion criterion |
-|------|----------------------|
-| `smaller_version` | User logs recovery done (`countsTowardTarget: false`) for the agreed micro-action |
-| `reschedule_in_week` | User completes a normal `done` on the chosen future day in an open week; **or** after missed week, completes the planned catch-up `done` in the new week (linked via `linkedCheckInId`) |
-| `restart_next` | Linked normal completion (`countsTowardTarget: true`) occurs on the user-selected restart date (`scheduledFor`) in the current or following week |
-| `ai_comeback` | User accepts (or edits) AI action and logs it complete (usually as recovery-only done) |
+For **ai_comeback:** user must pick (or edit) one of `aiOptions` (or equivalent single action) and complete it.
 
-Abandoned paths use `dismissed` or `expired` — never count as successful recoveries.
-
-### 5.7 Difficult week / easy week
-
-Use this **single** authoritative classification algorithm for closed, non-paused, non-partially-paused weeks:
+### 5.7 Easy / difficult
 
 ```ts
 function classifyWeek(week: ClosedWeek): "easy" | "difficult" | "neutral" {
   const { easy, manageable, hard } = week.difficultyCounts;
   const ratedCount = easy + manageable + hard;
-
   if (week.status === "missed") return "difficult";
   if (ratedCount === 0) return "neutral";
   if (week.status === "met" && easy >= manageable + hard) return "easy";
@@ -314,42 +308,49 @@ function classifyWeek(week: ClosedWeek): "easy" | "difficult" | "neutral" {
 }
 ```
 
-A week with no difficulty data is **neutral unless the weekly target was missed**. `paused` and `partially_paused` weeks are excluded.
+### 5.8 Cap
 
-**Down-suggest:** two consecutive closed weeks both `difficult` for same habit.  
-**Up-ask:** two consecutive closed weeks both `easy`.
+`active + paused ≤ 3`.
 
-### 5.8 Active habit cap
+### 5.9 Target effective date
 
-`count(status === active || (status === paused)) ≤ 3`. Archived excluded. Creating the 4th active/paused is blocked.
-
-### 5.9 Target change effective date
-
-- Manual edits and accepted suggestions set `pendingWeeklyTarget`.
-- On each local Monday, apply pending target to `weeklyTarget` and clear pending.
-- Current open week always scores against `WeekSnapshot.target` captured at week start (or habit create if created mid-week).
+Pending target applies local Monday; open week uses snapshot target.
 
 ---
 
-## 6. AI boundaries
+## 6. AI boundaries (first-class)
 
-### 6.1 Features and release sequence
+### 6.1 Required v1.0 features
 
 | Feature | Trigger | Input (after gate) | Output | User control |
 |---------|---------|--------------------|--------|--------------|
-| Habit Starter (v1.0 optional) | Onboarding / new habit | Goal text + optional constraints | name, target, motivation, smallerVersion | accept / edit / dismiss |
-| Personalized comeback (v1.0 required) | Recovery path | Habit summary + week aggregates + smallerVersion preset | micro-action + short encouragement | accept / edit / dismiss |
-| Weekly Review (v1.0 required) | `/review` CTA | Week aggregates for ≤3 habits | balanced narrative + one suggestion | display only; suggestions that change targets go through target UX |
-| Target explanation (v1.1) | Two difficult or two easy weeks | Habit + two-week aggregates + deterministic allowed target | explanation of adjustment | accept / edit / dismiss |
+| **Habit Starter** | Onboarding / new habit | Goal text + constraints | name, target, motivation, smallerVersion, firstTwoWeeksRamp[] | accept / edit / dismiss |
+| **Smart smaller-version** | Create/edit + recovery | Habit summary + optional goal | micro-action string | accept / edit / dismiss |
+| **Comeback Coach** | At-risk / missed / recovery path | Habit + week aggregates + smallerVersion | **2–3** micro-options + short encouragement | pick / edit / dismiss |
+| **Weekly Review** | `/review` | Aggregates for ≤3 habits (1–4 weeks) | **3 structured insight cards** + one next-week move | display; target changes via Plan Adjuster UX |
+| **Plan Adjuster** | Two easy or two difficult weeks | Two-week aggregates + **deterministic allowed target** | Explanation only (number fixed by code) | accept / edit / dismiss |
 
-**Target numbers:** deterministic only — `max(1, current - 1)` or `min(7, current + 1)`. The model may explain; it must not invent an unrestricted number.
+**Target numbers:** code only — `max(1, current - 1)` or `min(7, current + 1)`. Model explains; never invents unrestricted N.
 
-Encouragement is **tone inside** these features — not a separate product surface.
+**No free chat** — guided coach moments only.
 
-### 6.2 Privacy gate
+### 6.2 UX pattern: Facts vs Coach
 
-- Master `settings.aiEnabled` plus **confirm each invocation**.
-- Payload whitelist only, e.g.:
+Every AI-assisted screen must show:
+
+1. **Facts** — numbers from `tracking` (consistency, done/target, recoveries, difficulty counts).
+2. **Coach** — model narrative/options, clearly labeled, dismissible.
+
+This is the portfolio trust signature (same spirit as Readiness hard gates + narrative).
+
+### 6.3 Privacy gate
+
+- `settings.aiEnabled` + **confirm each invocation**.
+- Whitelist summaries only (`AiHabitSummary` + feature-specific fields such as `goalText` for Starter, `allowedTarget` for Plan Adjuster).
+- Never send full history by default.
+- `privacyGate(feature, payload)` sole browser→server path.
+- Versioned prompts in-repo; cost caps; **streaming** supported for Review/Starter; fail closed.
+- Offline: Facts work; Coach CTAs disabled or error with fallback copy.
 
 ```ts
 type AiHabitSummary = {
@@ -365,23 +366,28 @@ type AiHabitSummary = {
     successfulRecoveriesInWeek: number;
     atRiskFired: boolean;
   };
-  // no free-text check-in notes (none in v1); motivation allowed only for Habit Starter edit flows if user opts in
 };
 ```
 
-- Never send full history by default; Weekly Review sends **selected closed week(s)** summaries only (default: last 1–4 weeks aggregates).
-- `privacyGate(feature, payload)` is the only browser→server path for model calls.
-- Versioned prompts in-repo; cost caps; fail closed to non-AI UI.
-- Offline: hide or disable AI CTAs; core tracking works.
+### 6.4 Engineering shine (ship with v1.0)
 
-### 6.3 Non-goals (AI)
+| Capability | Requirement |
+|------------|-------------|
+| Prompt versions | `prompts/<feature>/vN.md` (or TS constants) referenced in logs |
+| Cost caps | Per-day and per-invocation limits; friendly degrade |
+| Streaming | Weekly Review + Habit Starter stream tokens into UI |
+| Eval fixtures | Golden inputs → schema/shape checks for Starter, Comeback options (2–3), Review cards |
+| Fail closed | Tracking never depends on model availability |
+| Server validation | Reject non-whitelisted payload shapes |
 
-- Chat / multi-turn coach
+### 6.5 Non-goals (AI)
+
+- Free-form multi-turn chat inbox
 - On-device LLM requirement
 - Auto-applying target or habit edits
-- Allowing the model to choose an unrestricted numeric target
+- Model-chosen unrestricted numeric targets
 - Adaptive reminder ML
-- Sending raw journal text (no journals in v1)
+- Raw journals / full completion history uploads
 
 ---
 
@@ -390,14 +396,12 @@ type AiHabitSummary = {
 | Concern | Choice |
 |---------|--------|
 | DB | IndexedDB via Dexie |
-| Derived logic | `src/lib/tracking/` pure functions + Vitest |
-| PWA | Installable; offline check-in |
-| Reminders | Optional daily **in-app** reminder at chosen local time; stop after weekly target met; pause suppresses; recovery date = one-time; system notification only when reliably supported |
-| Analytics | Page views only if used; never habit payloads |
-| CI | lint · typecheck · test · build |
+| Derived logic | `src/lib/tracking/` + Vitest |
+| AI | `src/lib/ai/` privacyGate + prompts + clients; `src/app/api/ai/*` |
+| PWA | Installable; offline Facts |
+| Reminders | In-app daily; stop when target met; pause suppresses; recovery one-time; OS notify best-effort |
+| CI | lint · typecheck · test · build (+ AI schema evals in test) |
 | Host | Vercel + `habitcheck.weidong-shi.com` |
-
-**Release note:** in-app reminders are required; background/system notification delivery is **not** a v1 release blocker (especially iOS PWA).
 
 ---
 
@@ -405,29 +409,24 @@ type AiHabitSummary = {
 
 | Case | Behavior |
 |------|----------|
-| User in timezone crossing week boundary | All dates local; document that travel may shift week; no cloud reconcile |
-| Pause or resume mid-week | Preserve check-ins; mark `partially_paused`; exclude week from averages/triggers; full scoring resumes next Monday |
-| Archive mid-week | Preserve history; treat current week as `partially_paused` |
-| Two recoveries same week | Allowed; each completed path counts; still no target inflation from smaller version |
-| Edit past check-ins | Backfill last **7** local days only |
-| Target edited mid-week | Queue change for next Monday; current week retains its snapshot target |
-| AI returns invalid target | Ignore model number; keep deterministic suggestion; show error if needed |
-| Reminder permission denied | In-app banners only; core OK |
-| Fourth habit | Block with message to archive/pause one |
-| Break-habit requests | Out of scope — copy points to build framing |
-| Empty difficulty on all dones | Neutral unless the weekly target was missed |
-| Sunday evening open app | Week still `in_progress` until local Monday |
-| Daily reminder | Stop for the week after target is met; pause suppresses it |
-| Recovery reminder | Separate one-time reminder for selected reschedule/restart date |
-| Unsupported notifications | In-app reminders remain required; background delivery is not a release blocker |
-| AI consent declined on AI recovery path | Fall back to non-AI paths (smaller version / restart day) without losing tracking |
-| AI failure | Fail closed; tracking and stats remain fully usable |
+| Timezone / travel | Local dates; document shift; no cloud reconcile |
+| Mid-week pause/resume | `partially_paused`; scoring resumes next Monday |
+| Archive mid-week | History kept; week `partially_paused` |
+| Two recoveries same week | Allowed; no target inflation from mini actions |
+| Backfill | Last 7 local days |
+| Target mid-week | Queue for next Monday |
+| Model invents target | Ignore; keep deterministic N |
+| Comeback returns ≠2–3 options | Normalize/fail closed to preset smaller version |
+| AI consent declined | Non-AI recovery paths; Facts intact |
+| AI failure | Fail closed; tracking + Facts review OK |
+| Reminder unsupported | In-app only; not a release blocker |
+| Empty difficulty | Neutral unless missed |
 
 ### 8.1 Recovery-oriented language
 
-Avoid: “failed,” “broke your streak,” “fell behind,” “try harder,” and “you only completed.”
+Avoid: “failed,” “broke your streak,” “fell behind,” “try harder,” “you only completed.”
 
-Prefer: “This week didn’t go as planned,” “Choose a way to restart,” “A smaller action still matters,” “Your previous progress remains,” and “What feels realistic now?”
+Prefer: “This week didn’t go as planned,” “Choose a way to restart,” “A smaller action still matters,” “Your previous progress remains,” “What feels realistic now?”
 
 ---
 
@@ -435,32 +434,31 @@ Prefer: “This week didn’t go as planned,” “Choose a way to restart,” �
 
 ### Product
 
-- [ ] Create up to 3 active habits with name, target, motivation, smaller version
-- [ ] Daily done/skip + optional difficulty
-- [ ] Enforce one target-counting completion per habit per local date
-- [ ] Mon–Sun week progress; met/missed only after Sunday
-- [ ] At-risk soft state mid-week
-- [ ] Recovery sheet with 4 paths; smaller version = recovery not full completion
-- [ ] Successful recovery counter increments on path completion
-- [ ] Pause indefinite + until-date; dated end resumes + reminder/banner
-- [ ] Mid-week pause/resume → `partially_paused` exclusion rules
-- [ ] Weekly review stats after week ends; on-demand; metrics shown separately
-- [ ] AI Comeback and Weekly Review behind per-action consent + summary-only gate
-- [ ] AI Habit Starter may ship in v1.0 if time permits; AI target explanations may follow in v1.1
-- [ ] Target changes never auto-apply
-- [ ] Target edits and accepted suggestions take effect the next Monday
-- [ ] Two difficult → down suggest; two easy → maintain/progress ask (deterministic ±1)
+- [ ] ≤3 habits; setup fields + optional ramp from Starter
+- [ ] Daily done/skip + difficulty; one target-counting done per habit/day
+- [ ] Mon–Sun weeks; miss only after Sunday; at-risk mid-week
+- [ ] Recovery paths including **AI Comeback Coach (2–3 options)**
+- [ ] Smaller version = recovery, not full completion
+- [ ] Pause + `partially_paused` rules
+- [ ] Weekly review: **Facts + Coach cards** (Coach required when online/consenting)
+- [ ] **Habit Starter** required in onboarding (skippable to manual)
+- [ ] **Smart smaller-version** on create/recovery
+- [ ] **Plan Adjuster**: deterministic ±1 + AI explanation; next Monday; never auto-apply
+- [ ] Facts vs Coach labeling on AI surfaces
 - [ ] Export/import `habitcheck-export@2`
-- [ ] Privacy page + wellness disclaimer + AI disclosure
-- [ ] Live on `habitcheck.weidong-shi.com`; CI green; PWA installable
-- [ ] In-app reminders work; system notifications best-effort only (not a blocker)
+- [ ] Privacy + wellness + AI disclosure
+- [ ] Live domain; CI green; PWA installable
+- [ ] In-app reminders; OS notify best-effort
 
 ### Engineering
 
-- [ ] Tracking rules covered by unit tests (week status, at-risk, consistency, easy/difficult, recovery counting)
-- [ ] Regression tests cover: duplicate same-day completion; recovery-only plus full completion; recovery early/on-time/late/never; cross-week restart; midweek pause/resume; next-Monday target change; missed weeks without ratings; easy week with one rated completion; daylight-saving/timezone boundaries; malformed/future imports; archive history; AI failure/declined consent; reminder suppression after target met
-- [ ] No streak/consistency persisted as source of truth
-- [ ] A11y: skip link, labels, focus, touch targets (sibling parity)
+- [ ] Tracking unit + regression tests (v4 suite)
+- [ ] privacyGate + prompt versions + cost caps + fail closed
+- [ ] Streaming for Starter and Weekly Review
+- [ ] Eval fixtures for Starter / Comeback / Review card shape
+- [ ] A11y parity with siblings
+
+**v1.0 does not ship** without Habit Starter, Comeback Coach, Weekly Review Coach, and Plan Adjuster explanation — AI is a ship gate, not a stretch goal.
 
 ---
 
@@ -468,24 +466,26 @@ Prefer: “This week didn’t go as planned,” “Choose a way to restart,” �
 
 | Phase | Goal | Exit |
 |-------|------|------|
-| **P0 — Scaffold** | Next.js + Tailwind v4 + Dexie + CI + `/privacy` stub | Deploy preview URL |
-| **P1 — Tracking core** | Schema + pure tracking tests green (week, at-risk, consistency, recovery flags) | Tests are spec |
-| **P2 — Today loop** | CRUD ≤3 habits, check-in, week ring, backfill 7d | Vertical slice usable offline |
-| **P3 — Recovery & pause** | Recovery sheet, smaller-version rules, pause/resume + reminder hook | Promise visible in UI |
-| **P4 — Review & progression** | `/review` stats; easy/difficult detection; deterministic target prompts accept/edit/dismiss | Non-AI coach loop complete |
-| **P5 — AI** | privacyGate + required Comeback + Weekly Review; optional Habit Starter; deterministic target suggestion (AI explanation optional / v1.1) | Opt-in AI demos; fail closed |
-| **P6 — Polish** | PWA, a11y, export/import, empty states, domain, hub case study draft | **v1.0 ship** |
+| **P0 — Scaffold** | Next.js + Tailwind v4 + Dexie + CI + `/privacy` + AI route stubs | Preview URL |
+| **P1 — Tracking core** | Schema + pure tracking tests (v4 rules) | Tests are scoring spec |
+| **P2 — Today loop** | CRUD ≤3, check-in, week ring, backfill | Offline Facts vertical slice |
+| **P3 — Recovery & pause** | Recovery sheet, counting rules, pause/resume, reminders | Promise visible without AI |
+| **P4 — Review & progression Facts** | `/review` Facts; easy/difficult; deterministic ±1 prompts | Non-AI coach loop |
+| **P5 — AI platform** | privacyGate, prompts, caps, streaming, evals, Facts vs Coach chrome | AI substrate ready |
+| **P6 — AI features** | Starter · Smart smaller-version · Comeback (2–3) · Review cards · Plan Adjuster | **All required AI live** |
+| **P7 — Polish & ship** | PWA, a11y, export/import, domain, hub case study | **v1.0 ship** |
 
-**Indicative calendar:** ~4–6 weeks depending on AI provider reuse from Readiness.
+**Indicative calendar:** ~5–7 weeks (AI-forward adds platform + evals vs v4).
 
-**Post-v1.1 candidates:** AI-written target explanations, break-habits, specific weekdays schedules, user-chosen week start, chat-free deeper history insights, extract `@better-living/tracking`.
+**Post-v1.1 candidates:** deeper multi-week Coach memory (still summary-only), break-habits, weekday schedules, user week-start, extract `@better-living/tracking` + `@better-living/ai`.
 
 ---
 
 ## 11. Content / portfolio notes
 
-- **Thesis:** Recover without shame — weekly honesty + AI comebacks on a deterministic core.
-- **Contrast chart:** RetireCheck (math) · SleepCheck (sensory) · Readiness (enterprise gates) · HabitCheck (personal coach + weekly grace).
+- **Thesis:** A personal habit OS — weekly honesty + AI coaching at every key moment, with Facts the model cannot rewrite.
+- **Contrast:** RetireCheck (math) · SleepCheck (sensory) · Readiness (enterprise gates) · HabitCheck (**consumer coach OS**).
+- **Demo script:** Starter → check-ins → at-risk Comeback (pick option) → missed week recovery → Weekly Review cards → Plan Adjuster.
 - **Methodology:** Build → Validate → Improve → Document → Share.
 - No monetization / pricing on public surfaces.
 
@@ -494,5 +494,6 @@ Prefer: “This week didn’t go as planned,” “Choose a way to restart,” �
 ## 12. Open at scaffold (non-blocking)
 
 - Exact GitHub repo name
-- Visual identity (color/icon) within Better Living wellness tone — avoid generic purple-AI clichés
-- Whether Habit Starter is offered before first manual create (recommend: yes, skippable)
+- Visual identity (tech-forward wellness; avoid generic purple-AI clichés)
+- Default model/provider env (reuse Readiness patterns where practical)
+- Whether first-run forces Starter before manual (recommend: Starter primary, “enter manually” secondary)

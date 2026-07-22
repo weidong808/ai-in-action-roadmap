@@ -21,7 +21,7 @@ AI in Action (educational portfolio)
 | [RetireCheck](../apps/retirecheck.md) | Live | End-to-end AI-assisted delivery with serious domain logic |
 | [SleepCheck](../apps/sleepcheck.md) | Live | Idea → product thinking → maintainable wellness PWA |
 | [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live | Deterministic readiness gates + advisory LLM narrative / evals |
-| [HabitCheck](../apps/habitcheck.md) | Discovery complete | Weekly recovery tracking + optional AI coach ([MVP spec](./discovery/habitcheck-02-mvp-specification.md)) |
+| [HabitCheck](../apps/habitcheck.md) | Discovery complete | Weekly recovery + AI-forward coach OS ([MVP v5](./discovery/habitcheck-02-mvp-specification.md)) |
 
 ## Near-term app work
 

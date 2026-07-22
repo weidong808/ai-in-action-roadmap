@@ -1,8 +1,8 @@
 # HabitCheck — Build Spec (AI in Action #4)
 
-**Recover after missed days — local-first weekly habits with kind recovery and optional AI coaching.**  
-*AI in Action #4 · Better Living candidate · Spec v4 · July 2026*  
-**Status:** Discovery complete — implementation-ready MVP spec locked (v4)
+**Recover after missed days — local-first weekly habit OS with kind recovery and first-class AI coaching.**  
+*AI in Action #4 · Better Living candidate · Spec v5 · July 2026*  
+**Status:** Discovery complete — implementation-ready MVP spec locked (**v5 AI-forward**)
 
 Related:
 
@@ -19,14 +19,14 @@ Related:
 Readiness (App #3) covered enterprise AI go/no-go judgment. HabitCheck returns to Better Living with:
 
 1. A reusable **weekly tracking** engine (targets, miss/at-risk, recoveries, easy/difficult weeks).
-2. A **personal coach** AI layer that is clearly different from Readiness — comebacks, weekly insights, plan adjustments — without chat.
+2. A **first-class AI coach platform** (~45–55% of story/build): Starter, Comeback Coach, Weekly Review cards, Plan Adjuster, Smart smaller-version — Facts vs Coach, no free chat.
 
 **Locked decisions:**
 
 | Decision | Choice |
 |----------|--------|
 | Repo shape | Single Next.js app (SleepCheck / Readiness pattern) |
-| AI in v1.0 | **In scope** — Starter · Comeback · Weekly Review · Target suggest |
+| AI in v1.0 | **Ship gate** — all five coach surfaces required |
 | Series label | AI in Action **#4** |
 | Habit cap | ≤ 3 active/paused |
 | Schedule | Flexible weekly target · Mon–Sun |
@@ -55,27 +55,31 @@ Busy adults who want to:
 - Smaller version = **successful recovery, not full completion**
 - Pause: indefinite or until date; mid-week → `partially_paused`; dated end resumes + reminder
 - Progression: two easy/difficult weeks → deterministic ±1 target (accept/edit/dismiss; **effective next Monday**)
-- Weekly review: balanced stats (separate metrics) + optional AI narrative (after Sunday, anytime)
+- Weekly review: **Facts + Coach insight cards** (after Sunday, anytime)
+- AI: Habit Starter · Comeback Coach (2–3 options) · Smart smaller-version · Plan Adjuster
+- Engineering shine: privacy gate, streaming, prompt versions, eval fixtures
 - Opt-in in-app reminders; export/import; PWA; Privacy + wellness + AI disclosure
 
 ### Out (v1.0)
 
-- Break-habits, weekday-specific schedules, chat UI
+- Break-habits, weekday-specific schedules, free-form chat
 - Accounts, cloud sync, social, native apps, Turborepo
 - Adaptive reminder ML; auto-applied target changes; model-chosen unrestricted targets
 
 ---
 
-## 4. AI design (v1.0)
+## 4. AI design (v1.0 — ship gate)
 
-| Feature | Priority | Model use | Deterministic part | Privacy |
-|---------|----------|-----------|--------------------|---------|
-| Comeback | **Required** | Personalized micro-action | Recovery completion rules | Opt-in; week/habit summary |
-| Weekly Review | **Required** | Balanced narrative + one suggestion | Stats computed locally | Opt-in; aggregates only |
-| Habit Starter | Optional if time | Goal → structured habit fields | Validation, cap ≤3 | Opt-in; single prompt |
-| Target explanation | v1.1 | Explain ±1 suggestion | Easy/difficult + `max/min` clamp | Opt-in; two-week summary |
+| Feature | Model use | Deterministic part | Privacy |
+|---------|-----------|--------------------|---------|
+| Habit Starter | Goal → plan + 2-week ramp | Validation, cap ≤3 | Opt-in; goal + constraints |
+| Smart smaller-version | Micro-action string | Recovery counting rules | Opt-in; habit summary |
+| Comeback Coach | **2–3** micro-options + encouragement | Path completion rules | Opt-in; week/habit summary |
+| Weekly Review Coach | 3 insight cards + next move | Stats computed locally | Opt-in; aggregates only |
+| Plan Adjuster | Explains ±1 only | Easy/difficult + `max/min` clamp | Opt-in; two-week summary |
 
-Same discipline as Readiness: versioned prompts, cost caps, privacy-gate choke point, fail closed. Details: [MVP spec v4 §6](../docs/discovery/habitcheck-02-mvp-specification.md).
+**UX:** Facts (code) vs Coach (AI) on every assisted surface.  
+Same discipline as Readiness: versioned prompts, cost caps, privacy gate, streaming, fail closed, evals. Details: [MVP spec v5 §6](../docs/discovery/habitcheck-02-mvp-specification.md).
 
 ---
 
@@ -103,21 +107,23 @@ Full notes: [habitcheck-architecture.md](./habitcheck-architecture.md).
 
 | Phase | Deliverable |
 |-------|-------------|
-| Discovery | Brief · decisions · **MVP spec** · architecture (current) |
+| Discovery | Brief · decisions · **MVP spec v5** · architecture (current) |
 | P0–P2 | Scaffold · tracking tests · Today loop |
-| P3–P4 | Recovery, pause, review, progression prompts |
-| P5–P6 | AI gate + features · polish · ship |
+| P3–P4 | Recovery, pause, Facts review, deterministic ±1 |
+| P5–P6 | AI platform + all required coach features |
+| P7 | Polish · ship |
 | Content | Hub `/work` + `/insights`, LinkedIn |
 
-Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mvp-specification.md).
+Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mvp-specification.md) — **AI is a ship gate**.
 
 ---
 
 ## 7. AI in Action #4 — content plan
 
-- **Article thesis:** Recover without shame — weekly honesty + AI comebacks on a deterministic core.
-- **Contrast:** four apps, four AI postures (none / none / enterprise gates / personal coach).
-- **Consumer teaser:** “Miss a day? HabitCheck helps you come back — without fake completion.”
+- **Article thesis:** A personal habit OS — weekly honesty + AI at every key moment, with Facts the model cannot rewrite.
+- **Contrast:** four apps, four AI postures (none / none / enterprise gates / **consumer coach OS**).
+- **Demo:** Starter → Comeback options → Review cards → Plan Adjuster.
+- **Consumer teaser:** “Miss a day? HabitCheck coaches you back — without fake completion.”
 
 ---
 
@@ -125,7 +131,7 @@ Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mv
 
 1. 4-week retention of installed-PWA users
 2. Recovery-path completion rate among users who miss a week
-3. AI opt-in usage (starter / review / comeback)
+3. AI adoption across Starter / Comeback / Review / Plan Adjuster
 4. Article reads + engagement vs prior series posts
 
 ---
@@ -134,7 +140,8 @@ Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mv
 
 | Risk | Mitigation |
 |------|------------|
-| AI gimmick | Code owns scores; model proposes only |
+| AI gimmick | Facts vs Coach; code owns scores |
 | Inflated completion via mini habits | Smaller version ≠ full completion |
-| Scope creep | MVP spec + ≤3 habits + no chat |
+| Scope creep | MVP v5 + ≤3 habits + no free chat |
+| AI schedule slip | P5/P6 are ship gates, not stretch |
 | iOS reminders | Best-effort + in-app banners |

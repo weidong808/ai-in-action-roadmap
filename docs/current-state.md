@@ -55,9 +55,9 @@
 
 ### HabitCheck
 
-- Local-first weekly habit PWA — recovery-first + optional AI coach in v1.0 — **discovery complete**
-- Role: App #4 Better Living candidate (personal coach posture vs Readiness enterprise gates)
-- Spec: [MVP specification](./discovery/habitcheck-02-mvp-specification.md) · [build notes](../apps/habitcheck.md)
+- Local-first weekly habit OS — recovery-first + **first-class AI coach** in v1.0 — **discovery complete (v5)**
+- Role: App #4 Better Living candidate (consumer coach OS vs Readiness enterprise gates)
+- Spec: [MVP specification v5](./discovery/habitcheck-02-mvp-specification.md) · [build notes](../apps/habitcheck.md)
 
 ## Feedback and validation stage
 

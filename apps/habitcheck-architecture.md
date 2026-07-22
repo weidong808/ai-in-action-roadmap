@@ -1,10 +1,10 @@
 # HabitCheck — Architecture Notes (v1.0)
 
 **Series:** AI in Action #4  
-**Status:** Discovery complete · implementation-ready  
+**Status:** Discovery complete · implementation-ready (MVP **v5 AI-forward**)  
 **App target:** `habitcheck.weidong-shi.com` (Vercel)  
 **Repo (planned):** single public Next.js app under `weidong808`  
-**Related:** [habitcheck.md](./habitcheck.md) · [MVP spec](../docs/discovery/habitcheck-02-mvp-specification.md) · [product decisions](../docs/discovery/habitcheck-01-product-decisions.md)
+**Related:** [habitcheck.md](./habitcheck.md) · [MVP spec v5](../docs/discovery/habitcheck-02-mvp-specification.md) · [product decisions](../docs/discovery/habitcheck-01-product-decisions.md)
 
 ---
 
@@ -12,7 +12,7 @@
 
 1. Ship a local-first weekly habit PWA with kind recovery.
 2. Isolate week / at-risk / consistency / easy-difficult / recovery rules in a pure tested module.
-3. Ship AI in v1 behind a single privacy gate — required Comeback + Weekly Review; optional Habit Starter (Readiness-style discipline, consumer coach posture).
+3. Ship a **first-class AI coach platform** in v1: Starter, Comeback Coach, Weekly Review cards, Plan Adjuster, Smart smaller-version — privacy gate, streaming, evals, Facts vs Coach (Readiness discipline, consumer OS posture).
 
 ## 2. Non-goals (v1.0)
 
@@ -91,7 +91,7 @@ See MVP spec §4 for full TypeScript shapes. Core entities:
 
 ---
 
-## 7. AI trust boundary (v1.0)
+## 7. AI trust boundary (v1.0 — first-class)
 
 ```mermaid
 flowchart LR
@@ -99,7 +99,7 @@ flowchart LR
   Gate[privacyGate whitelist]
   API["POST /api/ai/..."]
   Model[Configured provider]
-  UI[Starter / Review / Comeback / Target UI]
+  UI[Facts vs Coach UI]
 
   Stats --> Gate
   Gate -->|"summary JSON only"| API
@@ -111,12 +111,13 @@ flowchart LR
 **Enforced:**
 
 - Opt-in per invocation (+ master aiEnabled)
-- Aggregates / structured fields only (MVP spec §6.2)
-- Versioned prompts; cost caps; cache Weekly Review by stats hash when useful
-- Fail closed to non-AI flows
-- No chat; no auto-apply of mutations
+- Aggregates / structured fields only (MVP spec v5 §6)
+- Versioned prompts; cost caps; streaming for Starter/Review; eval fixtures
+- Fail closed to Facts-only flows
+- No free chat; no auto-apply; model cannot set unrestricted targets
+- UI always separates **Facts** (tracking) from **Coach** (model)
 
-Reuse patterns from Readiness where practical (gate, caps, prompt versioning) — different prompts and UX.
+Reuse patterns from Readiness where practical (gate, caps, prompt versioning) — consumer coach UX, not enterprise gates.
 
 ---
 
@@ -135,9 +136,9 @@ Reuse patterns from Readiness where practical (gate, caps, prompt versioning) �
 
 ## 9. Implementation slices
 
-Follow MVP phases P0–P6 in [habitcheck-02-mvp-specification.md](../docs/discovery/habitcheck-02-mvp-specification.md).
+Follow MVP phases P0–P7 in [habitcheck-02-mvp-specification.md](../docs/discovery/habitcheck-02-mvp-specification.md).
 
-Suggested order: storage → tracking tests → Today → recovery/pause → review/progression → AI → polish.
+Suggested order: storage → tracking tests → Today → recovery/pause → Facts review/±1 → AI platform → all coach features → polish.
 
 ---
 

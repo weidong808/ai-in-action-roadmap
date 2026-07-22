@@ -57,7 +57,7 @@ App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](
 ## Current state (summary)
 
 - RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
-- HabitCheck (AI in Action #4) discovery is **complete** — implementation-ready MVP spec (weekly recovery + optional AI in v1.0); await scaffold go ([MVP spec](./docs/discovery/habitcheck-02-mvp-specification.md))
+- HabitCheck (AI in Action #4) discovery is **complete** — MVP **v5 AI-forward** (weekly recovery + first-class coach surfaces); await scaffold go ([MVP spec](./docs/discovery/habitcheck-02-mvp-specification.md))
 - AI in Action content series is active across hub + LinkedIn
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven
