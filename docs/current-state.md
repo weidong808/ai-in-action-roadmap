@@ -11,9 +11,14 @@
 | RetireCheck source | Public MIT | https://github.com/weidong808/Retirement-Calculator |
 | SleepCheck | Live educational demo | https://sleepcheck.weidong-shi.com |
 | SleepCheck source | Public MIT | https://github.com/weidong808/SleepCheck |
+| AI Production Readiness Advisor | Live (App #3) | https://readiness.weidong-shi.com |
+| Readiness source | Public MIT | https://github.com/weidong808/ai-production-readiness-advisor |
+| HabitCheck | Discovery (App #4) | [apps/habitcheck.md](../apps/habitcheck.md) |
 | Personal hub | Live | https://weidong-shi.com |
-| AI in Action #1 (RetireCheck) | Published | Hub articles + LinkedIn (“Cursor in Action”) |
-| AI in Action #2 (SleepCheck) | Hub published; LinkedIn / video optional | https://weidong-shi.com/articles/ai-in-action-sleepcheck |
+| AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
+| AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
+| AI in Action #3 (Readiness) | Published | Hub insight + live app |
+| AI in Action #4 (HabitCheck) | Discovery docs | [discovery brief](./discovery/habitcheck-00-discovery-brief.md) |
 | This roadmap repo | Active | https://github.com/weidong808/ai-in-action-roadmap |
 
 ## What is intentionally not built yet
@@ -41,6 +46,18 @@
 - Role: second case study; product-thinking and maintainable delivery narrative
 - Positioning: **wellness, not medical device**
 - Live demo for learning
+
+### AI Production Readiness Advisor
+
+- Advisory assessment: eight dimensions, hard gates, OpenAI narrative
+- Role: App #3 engineering / architecture showcase
+- Live demo for learning
+
+### HabitCheck
+
+- Local-first habit PWA (build/break, grace streaks, heatmap) — **discovery**
+- Role: App #4 Better Living candidate; AI coach planned for v1.1
+- Spec: [../apps/habitcheck.md](../apps/habitcheck.md)
 
 ## Feedback and validation stage
 

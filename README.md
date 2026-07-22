@@ -49,16 +49,18 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 | **RetireCheck** | Live | [retirecheck.weidong-shi.com](https://retirecheck.weidong-shi.com) | [Retirement-Calculator](https://github.com/weidong808/Retirement-Calculator) |
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
 | **AI Production Readiness Advisor** | Live | [readiness.weidong-shi.com](https://readiness.weidong-shi.com) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
+| **HabitCheck** | Discovery (App #4) | — | Spec: [apps/habitcheck.md](./apps/habitcheck.md) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
-App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (Better Living candidate) · [apps/future-apps.md](./apps/future-apps.md)
+App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (#4 Better Living · discovery) · [apps/future-apps.md](./apps/future-apps.md)
 
 ## Current state (summary)
 
-- RetireCheck and SleepCheck are live educational demos
-- AI in Action content series is active (RetireCheck and SleepCheck hub + LinkedIn articles published; short videos live)
-- No authentication yet; apps are local-first
-- Shared technical capabilities are planned as learning milestones, not a product platform pitch
+- RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
+- HabitCheck (AI in Action #4) is in **discovery** — single-app local-first v1.0; AI coach deferred to v1.1 ([discovery brief](./docs/discovery/habitcheck-00-discovery-brief.md))
+- AI in Action content series is active across hub + LinkedIn
+- No authentication yet; Check apps are local-first
+- Shared technical capabilities are planned as learning milestones after reuse is proven
 - Early feedback stage
 
 Full checklist: [ROADMAP.md](./ROADMAP.md) · Current snapshot: [docs/current-state.md](./docs/current-state.md)
@@ -109,6 +111,9 @@ Private experiments may exist elsewhere. They are out of scope for this public r
 | [docs/privacy-and-security.md](./docs/privacy-and-security.md) | Privacy, wellness positioning |
 | [docs/content-strategy.md](./docs/content-strategy.md) | Articles, diagrams, LinkedIn |
 | [docs/decision-log.md](./docs/decision-log.md) | Recorded decisions |
+| [docs/discovery/habitcheck-00-discovery-brief.md](./docs/discovery/habitcheck-00-discovery-brief.md) | HabitCheck (#4) discovery brief |
+| [docs/discovery/habitcheck-01-product-decisions.md](./docs/discovery/habitcheck-01-product-decisions.md) | HabitCheck v1.0 product decisions |
+| [apps/habitcheck-architecture.md](./apps/habitcheck-architecture.md) | HabitCheck architecture notes |
 
 ### Diagrams
 

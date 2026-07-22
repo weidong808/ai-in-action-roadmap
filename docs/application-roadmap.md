@@ -8,8 +8,8 @@ AI in Action (educational portfolio)
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
 ├── AI Production Readiness Advisor     ← App #3 live (readiness.weidong-shi.com)
-├── HabitCheck / other Check apps       ← backlog candidates
-└── Future domain apps                  ← backlog
+├── HabitCheck                          ← App #4 discovery (Better Living)
+└── Future Check / domain apps          ← backlog
 ```
 
 **Rule:** Build one useful application at a time. New apps enter active work only when prior apps are polished enough and capacity allows.
@@ -21,14 +21,14 @@ AI in Action (educational portfolio)
 | [RetireCheck](../apps/retirecheck.md) | Live | End-to-end AI-assisted delivery with serious domain logic |
 | [SleepCheck](../apps/sleepcheck.md) | Live | Idea → product thinking → maintainable wellness PWA |
 | [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live | Deterministic readiness gates + advisory LLM narrative / evals |
+| [HabitCheck](../apps/habitcheck.md) | Discovery | Kind streaks + derived tracking engine (AI coach in v1.1) |
 
-## Near-term app work (not new domains)
+## Near-term app work
 
-1. SleepCheck polish and documentation  
-2. SleepCheck LinkedIn / optional AI in Action #2 video  
-3. RetireCheck README / architecture improvements as needed  
-4. Local history / sessions (especially SleepCheck) before optional auth  
-5. Auth evaluation shared across apps (engineering learning)  
+1. Owner approval of HabitCheck discovery → scaffold App #4  
+2. LinkedIn cadence for live apps (Readiness / 8-gates follow-through)  
+3. Extract shared tracking only after HabitCheck validates reuse  
+4. Auth evaluation across apps remains a later engineering learning milestone
 
 ## Future applications
 

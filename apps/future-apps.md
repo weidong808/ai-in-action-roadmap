@@ -9,8 +9,8 @@ AI in Action
 │
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
-├── AI Production Readiness Advisor     ← App #3 engineering showcase (local MVP)
-├── HabitCheck                          ← Better Living candidate (build spec)
+├── AI Production Readiness Advisor     ← App #3 engineering showcase · live
+├── HabitCheck                          ← App #4 · Better Living · discovery
 ├── FitnessCheck                        ← backlog
 ├── NutritionCheck                      ← backlog
 ├── MindCheck                           ← backlog
@@ -19,14 +19,14 @@ AI in Action
 ```
 
 - App #3 engineering showcase: [ai-production-readiness-advisor.md](./ai-production-readiness-advisor.md)  
-- Better Living candidate (separate track): [habitcheck.md](./habitcheck.md)
+- App #4 Better Living (next build): [habitcheck.md](./habitcheck.md) · [architecture](./habitcheck-architecture.md) · [discovery brief](../docs/discovery/habitcheck-00-discovery-brief.md)
 
 ## Candidates
 
 | App | Problem space | Caution |
 |-----|---------------|---------|
-| **AI Production Readiness Advisor** | Guided production-readiness assessment for AI features | Advisory only — not certification/audit |
-| **HabitCheck** | Build/break habits, streaks, local AI weekly review | Local-first; AI only on opt-in aggregates |
+| **AI Production Readiness Advisor** | Guided production-readiness assessment for AI features | Advisory only — not certification/audit · **live** |
+| **HabitCheck** | Build/break habits, kind streaks, local progress (AI coach in v1.1) | Local-first; wellness framing · **discovery** |
 | **FitnessCheck** | Habit / activity tracking with practical UX | Avoid medical claims |
 | **NutritionCheck** | Meal / habit support | Avoid diet-medical claims |
 | **MindCheck** | Focus / stress / journaling-style support | Wellness framing; mental-health claims carefully |

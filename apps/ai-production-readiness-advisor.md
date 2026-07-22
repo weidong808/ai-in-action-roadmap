@@ -19,7 +19,7 @@ Help engineers and architects assess whether an AI feature is ready for producti
 
 RetireCheck and SleepCheck demonstrated end-to-end product delivery in decision-support and local-first wellness. App #3 showcases **enterprise-relevant AI engineering judgment**: evaluation gates, prompt-injection posture, observability, cost controls, and structured outputs.
 
-**HabitCheck** remains a Better Living candidate (see [habitcheck.md](./habitcheck.md)) and is **not replaced** — it is sequenced separately from this engineering showcase.
+**HabitCheck** is sequenced next as **AI in Action #4** (Better Living) — see [habitcheck.md](./habitcheck.md). It does **not** replace this engineering showcase.
 
 ## Lessons intended for the case study
 
