@@ -49,7 +49,7 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 | **RetireCheck** | Live | [retirecheck.weidong-shi.com](https://retirecheck.weidong-shi.com) | [Retirement-Calculator](https://github.com/weidong808/Retirement-Calculator) |
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
 | **AI Production Readiness Advisor** | Live | [readiness.weidong-shi.com](https://readiness.weidong-shi.com) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
-| **HabitCheck** | Discovery (App #4) | — | Spec: [apps/habitcheck.md](./apps/habitcheck.md) |
+| **HabitCheck** | Discovery complete (App #4) | — | [MVP spec](./docs/discovery/habitcheck-02-mvp-specification.md) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
 App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (#4 Better Living · discovery) · [apps/future-apps.md](./apps/future-apps.md)
@@ -57,7 +57,7 @@ App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](
 ## Current state (summary)
 
 - RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
-- HabitCheck (AI in Action #4) is in **discovery** — single-app local-first v1.0; AI coach deferred to v1.1 ([discovery brief](./docs/discovery/habitcheck-00-discovery-brief.md))
+- HabitCheck (AI in Action #4) discovery is **complete** — implementation-ready MVP spec (weekly recovery + optional AI in v1.0); await scaffold go ([MVP spec](./docs/discovery/habitcheck-02-mvp-specification.md))
 - AI in Action content series is active across hub + LinkedIn
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven
@@ -113,6 +113,7 @@ Private experiments may exist elsewhere. They are out of scope for this public r
 | [docs/decision-log.md](./docs/decision-log.md) | Recorded decisions |
 | [docs/discovery/habitcheck-00-discovery-brief.md](./docs/discovery/habitcheck-00-discovery-brief.md) | HabitCheck (#4) discovery brief |
 | [docs/discovery/habitcheck-01-product-decisions.md](./docs/discovery/habitcheck-01-product-decisions.md) | HabitCheck v1.0 product decisions |
+| [docs/discovery/habitcheck-02-mvp-specification.md](./docs/discovery/habitcheck-02-mvp-specification.md) | HabitCheck implementation-ready MVP spec |
 | [apps/habitcheck-architecture.md](./apps/habitcheck-architecture.md) | HabitCheck architecture notes |
 
 ### Diagrams

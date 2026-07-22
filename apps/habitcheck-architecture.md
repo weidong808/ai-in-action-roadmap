@@ -1,24 +1,25 @@
 # HabitCheck — Architecture Notes (v1.0)
 
 **Series:** AI in Action #4  
-**Status:** Discovery  
+**Status:** Discovery complete · implementation-ready  
 **App target:** `habitcheck.weidong-shi.com` (Vercel)  
-**Repo (planned):** single public Next.js app under `weidong808` (name TBD at scaffold)  
-**Related:** [habitcheck.md](./habitcheck.md) · [discovery brief](../docs/discovery/habitcheck-00-discovery-brief.md) · [product decisions](../docs/discovery/habitcheck-01-product-decisions.md)
+**Repo (planned):** single public Next.js app under `weidong808`  
+**Related:** [habitcheck.md](./habitcheck.md) · [MVP spec](../docs/discovery/habitcheck-02-mvp-specification.md) · [product decisions](../docs/discovery/habitcheck-01-product-decisions.md)
 
 ---
 
 ## 1. Goals
 
-1. Ship a production local-first habit PWA without premature platform work.
-2. Isolate schedule / streak / stats logic in a pure, unit-tested module.
-3. Leave a clean seam for later extract to `@better-living/tracking` and v1.1 AI.
+1. Ship a local-first weekly habit PWA with kind recovery.
+2. Isolate week / at-risk / consistency / easy-difficult / recovery rules in a pure tested module.
+3. Ship AI in v1 behind a single privacy gate — required Comeback + Weekly Review; optional Habit Starter (Readiness-style discipline, consumer coach posture).
 
 ## 2. Non-goals (v1.0)
 
 - Turborepo or multi-app monorepo
 - Cloud sync, accounts, multi-device
-- LLM calls (see §7 for v1.1 preview only)
+- Chat UI or full-history model payloads
+- Break-habits / weekday-specific schedules
 
 ---
 
@@ -29,20 +30,30 @@ flowchart TB
   UI[Next.js App Router UI]
   Tracking[src/lib/tracking]
   Storage[src/lib/storage Dexie]
+  AI[src/lib/ai privacyGate]
   IDB[(IndexedDB)]
   SW[Service worker]
+  API["POST /api/ai/*"]
+  Model[LLM provider]
   Analytics[Vercel Analytics page views]
 
   UI --> Tracking
   UI --> Storage
+  UI --> AI
   Tracking --> Storage
   Storage --> IDB
+  AI -->|"whitelist summaries only"| API
+  API --> Model
   UI --> SW
-  Tracking -->|"derived streaks and stats"| UI
+  Tracking -->|"derived week stats"| UI
   Analytics -.->|"no habit payloads"| UI
 ```
 
-**One rule:** streaks and stats are **derived, never persisted**. Completions and habit definitions are the source of truth.
+**Rules:**
+
+- Completions + habit definitions + recovery events are source of truth.
+- Consistency, miss/met, at-risk, easy/difficult labels are **derived**.
+- Model never writes scores; UI applies accept/edit/dismiss only.
 
 ---
 
@@ -50,96 +61,62 @@ flowchart TB
 
 | Module | Responsibility | Must not |
 |--------|----------------|----------|
-| `src/lib/tracking/` | Schedule evaluation, grace streaks, weekly %, heatmap series, trend helpers | Touch Dexie or React |
-| `src/lib/storage/` | Dexie schema, migrations, CRUD, export/import | Encode streak formulas |
-| `src/components/` + `src/app/` | UX, PWA shell, Privacy, reminders wiring | Duplicate tracking math |
-| Service worker | Caching + notification display | Own business rules |
-
-Tracking inputs: immutable habit + completion snapshots + “as of” local date. Outputs: plain data structures for UI.
+| `src/lib/tracking/` | Week bounds, met/missed, at-risk, consistency %, easy/difficult, recovery completion helpers | Touch Dexie, React, or fetch |
+| `src/lib/storage/` | Dexie schema, migrations, CRUD, export/import | Encode scoring formulas |
+| `src/lib/ai/` | privacyGate, prompt versions, feature clients, cost/error handling | Bypass gate; send raw history |
+| `src/app/api/ai/*` | Server provider calls, caps | Accept non-gated client payloads without server-side shape checks |
+| UI + SW | UX, PWA, reminders | Duplicate tracking math |
 
 ---
 
-## 5. Data model
+## 5. Data model (summary)
 
-```ts
-type HabitType = "build" | "break";
+See MVP spec §4 for full TypeScript shapes. Core entities:
 
-type Schedule =
-  | { kind: "daily" }
-  | { kind: "weekly"; target: number } // 1–7
-  | { kind: "weekdays"; days: number[] }; // 0=Mon .. 6=Sun (product decision)
-
-type Habit = {
-  id: string;
-  name: string;
-  type: HabitType;
-  icon: string;
-  color: string;
-  motivation?: string;
-  schedule: Schedule;
-  createdAt: string; // ISO
-  archivedAt?: string;
-};
-
-type CompletionStatus = "done" | "skipped" | "missed";
-
-type Completion = {
-  id: string;
-  habitId: string;
-  date: string; // YYYY-MM-DD local
-  status: CompletionStatus;
-  note?: string;
-  loggedAt: string;
-};
-
-type Settings = {
-  theme: "system" | "light" | "dark";
-  remindersEnabled: boolean;
-  // per-habit reminder prefs live with habit or settings map
-};
-```
-
-Export envelope: `habitcheck-export@1` — `{ version, exportedAt, habits, completions, settings }`.
+- `Habit` — weeklyTarget, pendingWeeklyTarget, smallerVersion, pause, reminder, status
+- `CheckIn` — done/skip, optional difficulty, `countsTowardTarget`, optional `recoveryEventId`
+- `RecoveryEvent` — kind + status (`selected` \| `completed` \| `dismissed` \| `expired`) + `scheduledFor` / `linkedCheckInId`
+- `Settings` — theme, reminders, aiEnabled
+- Export: `habitcheck-export@2`
+- Week status includes `partially_paused`; target changes apply next Monday (see MVP spec v4)
 
 ---
 
 ## 6. Offline and PWA
 
-- Installable PWA; app shell + static assets cached
-- Core check-off works offline (100% of v1.0 product)
-- Reminders: notification permission + scheduled local notifications when platform allows
-- iOS limitations documented in UI and Privacy page
+- Installable PWA; offline check-in and review **stats**
+- AI CTAs disabled or fail closed offline
+- Reminders: permission + SW when supported; pause-end reminder required by product
+- iOS limits documented in UI + Privacy
 
 ---
 
-## 7. v1.1 AI trust boundary (preview only)
-
-When Weekly Review / Habit Starter ship:
+## 7. AI trust boundary (v1.0)
 
 ```mermaid
 flowchart LR
   Stats[Local aggregates from tracking]
   Gate[privacyGate whitelist]
   API["POST /api/ai/..."]
-  Model[OpenAI or configured provider]
-  UI[Review or Starter UI]
+  Model[Configured provider]
+  UI[Starter / Review / Comeback / Target UI]
 
   Stats --> Gate
-  Gate -->|"aggregate JSON only"| API
+  Gate -->|"summary JSON only"| API
   API --> Model
   Model --> API
   API --> UI
 ```
 
-**Rules (future):**
+**Enforced:**
 
-- Opt-in per invocation
-- `privacyGate()` is the only path that may leave the device
-- Versioned prompts in-repo; cost caps; cache by stats hash for Weekly Review
-- Fail closed to stats-only / non-AI proposal if the model fails
-- Never send raw completion notes or free-text journals in v1.1 unless explicitly product-approved later
+- Opt-in per invocation (+ master aiEnabled)
+- Aggregates / structured fields only (MVP spec §6.2)
+- Versioned prompts; cost caps; cache Weekly Review by stats hash when useful
+- Fail closed to non-AI flows
+- No chat; no auto-apply of mutations
 
-Do **not** implement this path in v1.0.
+Reuse patterns from Readiness where practical (gate, caps, prompt versioning) — different prompts and UX.
 
 ---
 
@@ -149,27 +126,23 @@ Do **not** implement this path in v1.0.
 |-------|--------|
 | UI | Next.js App Router, TypeScript, Tailwind v4, `next-themes` |
 | Storage | Dexie / IndexedDB |
-| Tests | Vitest for `tracking` (primary); component tests as needed |
+| Tests | Vitest for `tracking` (primary) |
 | CI | GitHub Actions: lint, typecheck, test, build |
-| Host | Vercel + Cloudflare DNS for `habitcheck.weidong-shi.com` |
-| Trust | `/privacy` page; wellness disclaimer; Analytics disclosure |
-
-Chrome parity with sibling apps: skip link, touch targets, Privacy in nav/footer.
+| Host | Vercel + Cloudflare DNS |
+| Trust | `/privacy`; wellness disclaimer; AI disclosure |
 
 ---
 
-## 9. Suggested first implementation slices
+## 9. Implementation slices
 
-1. Dexie schema + export/import stub  
-2. `tracking` unit tests for schedules + grace streaks (red → green)  
-3. Habit CRUD + today check-off  
-4. Heatmap + weekly %  
-5. PWA + reminders + Privacy + CI + domain  
+Follow MVP phases P0–P6 in [habitcheck-02-mvp-specification.md](../docs/discovery/habitcheck-02-mvp-specification.md).
+
+Suggested order: storage → tracking tests → Today → recovery/pause → review/progression → AI → polish.
 
 ---
 
-## 10. Open items for scaffold time (non-blocking)
+## 10. Open at scaffold
 
-- Exact GitHub repo name (`habitcheck` vs `HabitCheck`)
-- Icon / color token set
-- Whether starter habits are hard-coded templates (no AI) on first run
+- Exact GitHub repo name
+- Provider env (align with Readiness where possible)
+- Icon / color tokens (wellness, non-generic-AI palette)

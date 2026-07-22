@@ -13,12 +13,12 @@
 | SleepCheck source | Public MIT | https://github.com/weidong808/SleepCheck |
 | AI Production Readiness Advisor | Live (App #3) | https://readiness.weidong-shi.com |
 | Readiness source | Public MIT | https://github.com/weidong808/ai-production-readiness-advisor |
-| HabitCheck | Discovery (App #4) | [apps/habitcheck.md](../apps/habitcheck.md) |
+| HabitCheck | Discovery complete — MVP spec ready (App #4) | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) |
 | Personal hub | Live | https://weidong-shi.com |
 | AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
 | AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
 | AI in Action #3 (Readiness) | Published | Hub insight + live app |
-| AI in Action #4 (HabitCheck) | Discovery docs | [discovery brief](./discovery/habitcheck-00-discovery-brief.md) |
+| AI in Action #4 (HabitCheck) | Discovery complete · MVP spec | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) |
 | This roadmap repo | Active | https://github.com/weidong808/ai-in-action-roadmap |
 
 ## What is intentionally not built yet
@@ -55,9 +55,9 @@
 
 ### HabitCheck
 
-- Local-first habit PWA (build/break, grace streaks, heatmap) — **discovery**
-- Role: App #4 Better Living candidate; AI coach planned for v1.1
-- Spec: [../apps/habitcheck.md](../apps/habitcheck.md)
+- Local-first weekly habit PWA — recovery-first + optional AI coach in v1.0 — **discovery complete**
+- Role: App #4 Better Living candidate (personal coach posture vs Readiness enterprise gates)
+- Spec: [MVP specification](./discovery/habitcheck-02-mvp-specification.md) · [build notes](../apps/habitcheck.md)
 
 ## Feedback and validation stage
 

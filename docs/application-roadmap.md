@@ -8,7 +8,7 @@ AI in Action (educational portfolio)
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
 ├── AI Production Readiness Advisor     ← App #3 live (readiness.weidong-shi.com)
-├── HabitCheck                          ← App #4 discovery (Better Living)
+├── HabitCheck                          ← App #4 discovery complete (Better Living)
 └── Future Check / domain apps          ← backlog
 ```
 
@@ -21,11 +21,11 @@ AI in Action (educational portfolio)
 | [RetireCheck](../apps/retirecheck.md) | Live | End-to-end AI-assisted delivery with serious domain logic |
 | [SleepCheck](../apps/sleepcheck.md) | Live | Idea → product thinking → maintainable wellness PWA |
 | [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live | Deterministic readiness gates + advisory LLM narrative / evals |
-| [HabitCheck](../apps/habitcheck.md) | Discovery | Kind streaks + derived tracking engine (AI coach in v1.1) |
+| [HabitCheck](../apps/habitcheck.md) | Discovery complete | Weekly recovery tracking + optional AI coach ([MVP spec](./discovery/habitcheck-02-mvp-specification.md)) |
 
 ## Near-term app work
 
-1. Owner approval of HabitCheck discovery → scaffold App #4  
+1. Owner go on HabitCheck MVP spec → scaffold App #4  
 2. LinkedIn cadence for live apps (Readiness / 8-gates follow-through)  
 3. Extract shared tracking only after HabitCheck validates reuse  
 4. Auth evaluation across apps remains a later engineering learning milestone

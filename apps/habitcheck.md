@@ -1,13 +1,14 @@
 # HabitCheck — Build Spec (AI in Action #4)
 
-**Build and break habits that stick — local-first PWA with kind streak rules and honest progress.**  
-*AI in Action #4 · Better Living candidate · Spec v2 · July 2026*  
-**Status:** Discovery (v1.0 scope locked: single app, AI deferred to v1.1)
+**Recover after missed days — local-first weekly habits with kind recovery and optional AI coaching.**  
+*AI in Action #4 · Better Living candidate · Spec v4 · July 2026*  
+**Status:** Discovery complete — implementation-ready MVP spec locked (v4)
 
 Related:
 
 - [Discovery brief](../docs/discovery/habitcheck-00-discovery-brief.md)
 - [Product decisions](../docs/discovery/habitcheck-01-product-decisions.md)
+- [MVP specification](../docs/discovery/habitcheck-02-mvp-specification.md) ← **implementation contract**
 - [Architecture notes](./habitcheck-architecture.md)
 - [Future apps](./future-apps.md)
 
@@ -15,140 +16,117 @@ Related:
 
 ## 1. Why HabitCheck Next
 
-Readiness (App #3) covered enterprise AI go/no-go judgment. HabitCheck returns to the Better Living track with a reusable **tracking engine**: streaks, schedules, check-offs, and progress views that FitnessCheck and siblings will need later.
+Readiness (App #3) covered enterprise AI go/no-go judgment. HabitCheck returns to Better Living with:
 
-Building HabitCheck first means:
+1. A reusable **weekly tracking** engine (targets, miss/at-risk, recoveries, easy/difficult weeks).
+2. A **personal coach** AI layer that is clearly different from Readiness — comebacks, weekly insights, plan adjustments — without chat.
 
-- A clean internal `src/lib/tracking/` module that can later extract to `@better-living/tracking` when reuse is proven — **not** a Turborepo on day one.
-- Strongest product thesis for the series: *"I built one app and got an engine for the next six."*
-- Safest MVP: pure local-first, no hardware, no third-party API required for v1.0.
-
-**Locked decisions (discovery):**
+**Locked decisions:**
 
 | Decision | Choice |
 |----------|--------|
 | Repo shape | Single Next.js app (SleepCheck / Readiness pattern) |
-| AI in v1.0 | Deferred — Weekly Review + Habit Starter in **v1.1** |
-| Series label | AI in Action **#4** (Readiness remains #3) |
+| AI in v1.0 | **In scope** — Starter · Comeback · Weekly Review · Target suggest |
+| Series label | AI in Action **#4** |
+| Habit cap | ≤ 3 active/paused |
+| Schedule | Flexible weekly target · Mon–Sun |
 
 ---
 
-## 2. Target User & Jobs to Be Done
+## 2. Target user & JTBD
 
-Ordinary people (not quantified-self enthusiasts) who want to:
+Busy adults who want to:
 
-1. Start a small number of habits and actually keep them (build habits)
-2. Cut down on something (break habits — often forgotten by competitors)
-3. See honest progress without spreadsheet energy
-4. Get reminders that feel helpful, not like a notification firehose
+1. Keep a small number of healthier routines with flexible weekly targets
+2. Recover after misses without streak shame
+3. Optionally use AI for plans, comebacks, and weekly pattern language
+4. Stay private / local-first
 
 ---
 
-## 3. MVP Scope
+## 3. MVP scope
 
 ### In (v1.0)
 
-- **Habits:** create build-type and break-type habits; name, icon, color, motivation note
-- **Schedules:** daily, N-days-per-week, specific weekdays
-- **Check-off:** one-tap complete/skip from the home screen; backfill up to 7 days
-- **Streaks:** current + best streak, with *grace rules* (one scheduled miss does not zero a long streak)
-- **Progress views:** calendar heatmap per habit; weekly completion %; simple trend line
-- **Reminders:** local notifications via service worker (opt-in, per habit; best-effort on iOS PWA)
-- **Data:** export/import JSON; PWA installable; **fully offline**
-- **Trust chrome:** Privacy page + wellness framing (not medical advice)
+- ≤3 **build** habits: name, weekly target, motivation, smaller-version preset
+- Check-in: done/skip + optional difficulty (easy / manageable / hard)
+- Week model: Mon–Sun; miss only at week end; mid-week at-risk
+- Recovery paths (user chooses): smaller version · reschedule · **choose next restart day** · Ask AI
+- Smaller version = **successful recovery, not full completion**
+- Pause: indefinite or until date; mid-week → `partially_paused`; dated end resumes + reminder
+- Progression: two easy/difficult weeks → deterministic ±1 target (accept/edit/dismiss; **effective next Monday**)
+- Weekly review: balanced stats (separate metrics) + optional AI narrative (after Sunday, anytime)
+- Opt-in in-app reminders; export/import; PWA; Privacy + wellness + AI disclosure
 
 ### Out (v1.0)
 
-- Accounts, cloud sync, sharing/social, widgets, native apps
-- **AI Weekly Review** and **AI Habit Starter** (planned **v1.1**)
-- AI chat interface
-- Turborepo / shared monorepo; migrating SleepCheck or RetireCheck
-
-### Planned (v1.1)
-
-- AI Weekly Review (on-demand; aggregated stats only leave the browser)
-- AI Habit Starter (goal → structured habit proposal)
-- Privacy gate + provider abstraction (previewed in architecture notes)
+- Break-habits, weekday-specific schedules, chat UI
+- Accounts, cloud sync, social, native apps, Turborepo
+- Adaptive reminder ML; auto-applied target changes; model-chosen unrestricted targets
 
 ---
 
-## 4. AI Design (v1.1 preview — not v1.0)
+## 4. AI design (v1.0)
 
-| Feature | Model use | Deterministic part | Privacy |
-|---------|-----------|--------------------|---------|
-| Weekly Review | Summarize + one recommendation from aggregates | Stats computed locally | Opt-in per invocation; aggregate JSON only |
-| Habit Starter | Parse goal → structured habit proposal | Schedule validation, duplicate detection | Single prompt; no history |
+| Feature | Priority | Model use | Deterministic part | Privacy |
+|---------|----------|-----------|--------------------|---------|
+| Comeback | **Required** | Personalized micro-action | Recovery completion rules | Opt-in; week/habit summary |
+| Weekly Review | **Required** | Balanced narrative + one suggestion | Stats computed locally | Opt-in; aggregates only |
+| Habit Starter | Optional if time | Goal → structured habit fields | Validation, cap ≤3 | Opt-in; single prompt |
+| Target explanation | v1.1 | Explain ±1 suggestion | Easy/difficult + `max/min` clamp | Opt-in; two-week summary |
 
-When AI ships: versioned prompts, cost caps, and a single privacy-gate choke point. Offline always degrades to stats-only / non-AI flows.
+Same discipline as Readiness: versioned prompts, cost caps, privacy-gate choke point, fail closed. Details: [MVP spec v4 §6](../docs/discovery/habitcheck-02-mvp-specification.md).
 
 ---
 
-## 5. Architecture (v1.0)
+## 5. Architecture (summary)
 
-**Stack:** Next.js App Router + React + TypeScript + Tailwind v4, PWA, IndexedDB via Dexie, Vercel at `habitcheck.weidong-shi.com`, Cloudflare DNS, GitHub Actions CI (lint · typecheck · test · build).
-
-**Module layout (single repo):**
+**Stack:** Next.js App Router + TypeScript + Tailwind v4 + Dexie + PWA · Vercel `habitcheck.weidong-shi.com` · GitHub Actions CI.
 
 ```
 habitcheck/
 ├── src/
-│   ├── app/                 # routes, privacy, PWA
+│   ├── app/
 │   ├── components/
 │   └── lib/
-│       ├── tracking/        # schedules, streaks, grace rules, stats (unit-tested)
-│       └── storage/         # Dexie schema, migrations, export/import
+│       ├── tracking/     # week status, at-risk, consistency, easy/difficult, recovery rules
+│       ├── storage/      # Dexie, export/import
+│       └── ai/           # privacyGate, prompts, client helpers
 └── .github/workflows/ci.yml
 ```
 
-Extract `@better-living/tracking` (and later `ai`) **after** HabitCheck validates the engine — do not block v1 on monorepo migration.
-
-**Data model (IndexedDB):**
-
-```ts
-Habit      { id, name, type: 'build'|'break', icon, color, motivation,
-             schedule: { kind: 'daily'|'weekly'|'weekdays', target?, days? },
-             createdAt, archivedAt? }
-Completion { id, habitId, date, status: 'done'|'skipped'|'missed', note?, loggedAt }
-Settings   { reminders, theme, ... }
-```
-
-**Hard rule:** streaks and stats are **derived, never stored** — computed in `src/lib/tracking/` with unit tests as the module’s spec.
-
-Full write-up: [habitcheck-architecture.md](./habitcheck-architecture.md).
+Full notes: [habitcheck-architecture.md](./habitcheck-architecture.md).
 
 ---
 
-## 6. Milestones (indicative)
+## 6. Milestones
 
 | Phase | Deliverable |
 |-------|-------------|
-| Discovery | This pack — brief, decisions, architecture (current) |
-| Week 1–2 | App scaffold; `tracking` tests; habit CRUD + check-off |
-| Week 3 | Heatmap + trends; reminders; PWA/offline |
-| Week 4 | Polish, a11y, export/import, Privacy page, deploy |
-| Content | Hub `/work` + `/insights`, LinkedIn, diagrams |
-| v1.1 | AI Weekly Review + Habit Starter behind privacy gate |
+| Discovery | Brief · decisions · **MVP spec** · architecture (current) |
+| P0–P2 | Scaffold · tracking tests · Today loop |
+| P3–P4 | Recovery, pause, review, progression prompts |
+| P5–P6 | AI gate + features · polish · ship |
+| Content | Hub `/work` + `/insights`, LinkedIn |
 
-**Definition of done (v1.0):** live on subdomain; CI green; tracking module well covered by unit tests; Privacy page; hub case study draft ready.
-
----
-
-## 7. AI in Action #4 — Content Plan
-
-- **Article thesis:** *"One extra week on this app bought me an engine for the next six."* Spine: kind streak / grace-rule design + derived stats module (extract story continues in v1.1 / later packages).
-- **Video (15s):** create habit → first check-off → streak animates → heatmap.
-- **Lessons:** grace-rule product judgment; derived-vs-stored state; ship core before AI coach.
-- **Consumer teaser:** "Most habit apps punish you for missing one day. HabitCheck doesn't."
+Definition of done: [MVP acceptance criteria](../docs/discovery/habitcheck-02-mvp-specification.md).
 
 ---
 
-## 8. Success Metrics (first 8 weeks post-launch)
+## 7. AI in Action #4 — content plan
 
-1. 4-week retention of installed-PWA users (primary)
-2. Median habits per active user (healthy range 2–5; >8 signals over-ambition churn)
-3. (v1.1+) Weekly Review usage rate among active users
-4. Article reads + repo stars vs prior AI in Action posts
-5. Time-to-build for FitnessCheck afterward (reuse payoff — publish this number)
+- **Article thesis:** Recover without shame — weekly honesty + AI comebacks on a deterministic core.
+- **Contrast:** four apps, four AI postures (none / none / enterprise gates / personal coach).
+- **Consumer teaser:** “Miss a day? HabitCheck helps you come back — without fake completion.”
+
+---
+
+## 8. Success metrics (first 8 weeks)
+
+1. 4-week retention of installed-PWA users
+2. Recovery-path completion rate among users who miss a week
+3. AI opt-in usage (starter / review / comeback)
+4. Article reads + engagement vs prior series posts
 
 ---
 
@@ -156,7 +134,7 @@ Full write-up: [habitcheck-architecture.md](./habitcheck-architecture.md).
 
 | Risk | Mitigation |
 |------|------------|
-| Over-engineering shared packages before feedback | Single app + internal `tracking` module only in v1 |
-| Notification reliability on iOS PWA | Best-effort reminders; clear in-app expectations |
-| Shipping AI too early feels gimmicky | AI deferred to v1.1 after core retention works |
-| Scope creep into monorepo migration | Migrate SleepCheck/RetireCheck only after HabitCheck is live |
+| AI gimmick | Code owns scores; model proposes only |
+| Inflated completion via mini habits | Smaller version ≠ full completion |
+| Scope creep | MVP spec + ≤3 habits + no chat |
+| iOS reminders | Best-effort + in-app banners |
