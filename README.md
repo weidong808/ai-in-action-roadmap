@@ -49,7 +49,7 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 | **RetireCheck** | Live | [retirecheck.weidong-shi.com](https://retirecheck.weidong-shi.com) | [Retirement-Calculator](https://github.com/weidong808/Retirement-Calculator) |
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
 | **AI Production Readiness Advisor** | Live | [readiness.weidong-shi.com](https://readiness.weidong-shi.com) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
-| **HabitCheck** | P0–P7 code complete (App #4) · deploy pending | [HabitCheck](https://github.com/weidong808/HabitCheck) | [MVP spec](./docs/discovery/habitcheck-02-mvp-specification.md) |
+| **HabitCheck** | Live (App #4) | [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) | [HabitCheck](https://github.com/weidong808/HabitCheck) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
 App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (#4 Better Living · discovery) · [apps/future-apps.md](./apps/future-apps.md)
@@ -57,7 +57,7 @@ App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](
 ## Current state (summary)
 
 - RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
-- HabitCheck (AI in Action #4) **P0–P7 code complete** — [HabitCheck](https://github.com/weidong808/HabitCheck) CI green; public Vercel/DNS + hub case study pending ([spec](./docs/discovery/habitcheck-02-mvp-specification.md))
+- HabitCheck (AI in Action #4) **live** at [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) — hub case study / LinkedIn pending ([spec](./docs/discovery/habitcheck-02-mvp-specification.md))
 - AI in Action content series is active across hub + LinkedIn
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven

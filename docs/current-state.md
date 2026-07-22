@@ -13,12 +13,12 @@
 | SleepCheck source | Public MIT | https://github.com/weidong808/SleepCheck |
 | AI Production Readiness Advisor | Live (App #3) | https://readiness.weidong-shi.com |
 | Readiness source | Public MIT | https://github.com/weidong808/ai-production-readiness-advisor |
-| HabitCheck | P0–P7 code complete (deploy pending) | [github.com/weidong808/HabitCheck](https://github.com/weidong808/HabitCheck) |
+| HabitCheck | Live (App #4) | https://habitcheck.weidong-shi.com |
 | Personal hub | Live | https://weidong-shi.com |
 | AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
 | AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
 | AI in Action #3 (Readiness) | Published | Hub insight + live app |
-| AI in Action #4 (HabitCheck) | App code complete · public ship pending | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) · [repo](https://github.com/weidong808/HabitCheck) |
+| AI in Action #4 (HabitCheck) | App live · hub case study pending | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) · [repo](https://github.com/weidong808/HabitCheck) |
 | This roadmap repo | Active | https://github.com/weidong808/ai-in-action-roadmap |
 
 ## What is intentionally not built yet
@@ -55,11 +55,12 @@
 
 ### HabitCheck
 
-- Local-first weekly habit OS — recovery-first + **first-class AI coach** — **P0–P7 code complete** (CI green)
+- Local-first weekly habit OS — recovery-first + **first-class AI coach** — **live** on custom domain
 - Role: App #4 Better Living candidate (consumer coach OS vs Readiness enterprise gates)
+- Live: https://habitcheck.weidong-shi.com (fallback https://habitcheck-nine.vercel.app)
 - Repo: [HabitCheck](https://github.com/weidong808/HabitCheck)
 - Spec: [MVP specification v5](./discovery/habitcheck-02-mvp-specification.md) · [build notes](../apps/habitcheck.md)
-- Remaining for public v1.0: Vercel + `OPENAI_API_KEY`, `habitcheck.weidong-shi.com`, hub case study
+- Remaining for public v1.0: hub case study / LinkedIn
 
 ## Feedback and validation stage
 
