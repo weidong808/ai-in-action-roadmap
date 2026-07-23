@@ -58,7 +58,7 @@ App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](
 
 - RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
 - HabitCheck (AI in Action #4) **live** at [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) — hub case study / LinkedIn pending ([spec](./docs/discovery/habitcheck-02-mvp-specification.md))
-- AI in Action content series is active across hub + LinkedIn
+- AI in Action content series is active across hub + LinkedIn (#1–#3 live)
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven
 - Early feedback stage

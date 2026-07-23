@@ -25,8 +25,8 @@ AI in Action (educational portfolio)
 
 ## Near-term app work
 
-1. HabitCheck public ship — Vercel + DNS + `OPENAI_API_KEY` + hub case study  
-2. LinkedIn cadence for live apps (Readiness / HabitCheck)  
+1. HabitCheck public ship — hub case study + LinkedIn  
+2. LinkedIn cadence for HabitCheck (Readiness #3 feed post live)  
 3. Extract shared tracking only after HabitCheck validates reuse  
 4. Auth evaluation across apps remains a later engineering learning milestone
 

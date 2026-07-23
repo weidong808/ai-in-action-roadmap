@@ -17,7 +17,7 @@
 | Personal hub | Live | https://weidong-shi.com |
 | AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
 | AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
-| AI in Action #3 (Readiness) | Published | Hub insight + live app |
+| AI in Action #3 (Readiness) | Published | Hub + LinkedIn · https://www.linkedin.com/posts/weidong-shi_is-your-ai-system-ready-for-production-activity-7486042640698732544-yEwZ |
 | AI in Action #4 (HabitCheck) | App live · hub case study pending | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) · [repo](https://github.com/weidong808/HabitCheck) |
 | This roadmap repo | Active | https://github.com/weidong808/ai-in-action-roadmap |
 
