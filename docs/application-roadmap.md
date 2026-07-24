@@ -25,7 +25,7 @@ AI in Action (educational portfolio)
 
 ## Near-term app work
 
-1. HabitCheck public ship — hub case study + LinkedIn  
+1. ~~HabitCheck public ship — hub case study + LinkedIn~~ **Done 2026-07-24** (optional Pulse / hub insight later)  
 2. LinkedIn cadence for HabitCheck (Readiness #3 feed post live)  
 3. Extract shared tracking only after HabitCheck validates reuse  
 4. Auth evaluation across apps remains a later engineering learning milestone

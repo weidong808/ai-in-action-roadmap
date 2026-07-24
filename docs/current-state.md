@@ -18,7 +18,7 @@
 | AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
 | AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
 | AI in Action #3 (Readiness) | Published | Hub + LinkedIn · https://www.linkedin.com/posts/weidong-shi_is-your-ai-system-ready-for-production-activity-7486042640698732544-yEwZ |
-| AI in Action #4 (HabitCheck) | App live · hub case study pending | [MVP spec](./discovery/habitcheck-02-mvp-specification.md) · [repo](https://github.com/weidong808/HabitCheck) |
+| AI in Action #4 (HabitCheck) | Published | Hub case study + LinkedIn · https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA |
 | This roadmap repo | Active | https://github.com/weidong808/ai-in-action-roadmap |
 
 ## What is intentionally not built yet
@@ -60,7 +60,8 @@
 - Live: https://habitcheck.weidong-shi.com (fallback https://habitcheck-nine.vercel.app)
 - Repo: [HabitCheck](https://github.com/weidong808/HabitCheck)
 - Spec: [MVP specification v5](./discovery/habitcheck-02-mvp-specification.md) · [build notes](../apps/habitcheck.md)
-- Remaining for public v1.0: hub case study / LinkedIn
+- Hub case study: https://weidong-shi.com/work/habitcheck
+- LinkedIn #4: https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA
 
 ## Feedback and validation stage
 

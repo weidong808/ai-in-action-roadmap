@@ -2,7 +2,7 @@
 
 **Recover after missed days — local-first weekly habit OS with kind recovery and first-class AI coaching.**  
 *AI in Action #4 · Better Living candidate · Spec v5 · July 2026*  
-**Status:** MVP **P0–P7 code complete** on [HabitCheck](https://github.com/weidong808/HabitCheck) (`main`, CI green) · public deploy/domain + hub case study still pending
+**Status:** MVP **P0–P7 code complete** on [HabitCheck](https://github.com/weidong808/HabitCheck) (`main`, CI green) · **live** + hub case study + [LinkedIn #4](https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA)
 
 Related:
 
