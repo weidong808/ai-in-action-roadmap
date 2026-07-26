@@ -1,6 +1,9 @@
 # AI in Action — Public Roadmap
 
-Public architecture and delivery roadmap for the **AI in Action** series — production-ready personal case studies including RetireCheck, SleepCheck, and optional shared technical foundations.
+Public architecture and delivery roadmap for the **AI in Action** series —
+production-ready personal case studies including RetireCheck, SleepCheck,
+AI Production Readiness Advisor, HabitCheck, and optional shared technical
+foundations.
 
 This repository is documentation only. It is the educational and architectural source of truth. Application source code lives in separate repositories.
 
@@ -56,9 +59,9 @@ App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](
 
 ## Current state (summary)
 
-- RetireCheck, SleepCheck, and AI Production Readiness Advisor are live educational demos
+- RetireCheck, SleepCheck, AI Production Readiness Advisor, and HabitCheck are live educational demos
 - HabitCheck (AI in Action #4) **live** at [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) — [hub case study](https://weidong-shi.com/work/habitcheck) + [LinkedIn #4](https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA)
-- AI in Action content series is active across hub + LinkedIn (#1–#3 live)
+- AI in Action content series is active across hub + LinkedIn (#1–#4 live)
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven
 - Early feedback stage
@@ -67,14 +70,17 @@ Full checklist: [ROADMAP.md](./ROADMAP.md) · Current snapshot: [docs/current-st
 
 ## Path toward shared technical foundations
 
-Do not treat RetireCheck and SleepCheck as isolated forever — but do not force a shared platform before reuse is real.
+Do not treat the applications as isolated forever — but do not force a shared
+platform before reuse is real.
 
 ```
 AI in Action (educational portfolio)
 │
 ├── RetireCheck
 ├── SleepCheck
-├── Future Check apps (optional)
+├── AI Production Readiness Advisor
+├── HabitCheck
+├── Future apps (optional)
 └── Shared capabilities when reuse is proven
     (UI patterns, optional identity/sync, reporting conventions, AI insight patterns)
 ```
@@ -87,6 +93,8 @@ Sequence: polish and validate apps → document and share → extract shared pat
 weidong808/
 ├── Retirement-Calculator     # RetireCheck (public MIT educational showcase)
 ├── SleepCheck                # SleepCheck (public MIT educational showcase)
+├── ai-production-readiness-advisor
+├── HabitCheck
 └── ai-in-action-roadmap      # this repo — public planning & education only
 ```
 
@@ -102,6 +110,7 @@ Private experiments may exist elsewhere. They are out of scope for this public r
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | How to contribute to this roadmap |
 | [docs/scope.md](./docs/scope.md) | Public education/showcase boundary |
 | [docs/current-state.md](./docs/current-state.md) | What exists today |
+| [docs/codebase-maintenance.md](./docs/codebase-maintenance.md) | Cross-repository verification and maintenance handoff |
 | [docs/product-strategy.md](./docs/product-strategy.md) | Product / portfolio direction |
 | [docs/platform-architecture.md](./docs/platform-architecture.md) | Target architecture |
 | [docs/application-roadmap.md](./docs/application-roadmap.md) | App portfolio plan |

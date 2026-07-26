@@ -26,12 +26,14 @@ The series demonstrates how experienced engineers and architects can use AI-assi
 
 **Purpose of the public work:** demonstrate engineering judgment, architecture, AI-assisted delivery, CI/CD, and cloud deploy — and build professional reputation with engineers, architects, hiring managers, and peers.
 
-**First two public applications:**
+**Public applications:**
 
 | App | Live | Repo |
 |-----|------|------|
 | RetireCheck | https://retirecheck.weidong-shi.com | https://github.com/weidong808/Retirement-Calculator |
 | SleepCheck | https://sleepcheck.weidong-shi.com | https://github.com/weidong808/SleepCheck |
+| AI Production Readiness Advisor | https://readiness.weidong-shi.com | https://github.com/weidong808/ai-production-readiness-advisor |
+| HabitCheck | https://habitcheck.weidong-shi.com | https://github.com/weidong808/HabitCheck |
 
 **Hub:** https://weidong-shi.com  
 **Roadmap repo:** https://github.com/weidong808/ai-in-action-roadmap  
@@ -122,11 +124,11 @@ Do **not** build the full shared platform immediately.
 
 Next immediate work:
 
-- Polish SleepCheck
-- Keep architecture docs current
-- Optional: SleepCheck LinkedIn / AI in Action #2 video
-- Gather user feedback
-- Maintain this public roadmap
+- Gather feedback across all four live applications
+- Keep architecture, deployment, and portfolio documentation current
+- Improve accessibility and regression coverage where evidence shows gaps
+- Maintain this public roadmap as the cross-repository source of truth
+- Extract shared UI or infrastructure only after repeated maintenance proves the reuse case
 - Prepare for optional authentication and capability maturity later
 
 Avoid: premature shared multi-tenant architecture, unnecessary microservices, and any commercial packaging language in this repo.
