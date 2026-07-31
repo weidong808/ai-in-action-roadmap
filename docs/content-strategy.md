@@ -56,19 +56,7 @@ Always answer: **What engineering lesson did building this teach?**
 
 **Thesis:** Four apps, four AI postures (none / optional wellness / enterprise gates / consumer coach OS) — synthesize the engineering lessons across the series.
 
-**Draft:** `weidong-website/docs/linkedin-retrospective/ARTICLE.md`
-
-**Deliverables:** Hub insight at `/insights/ai-in-action-retrospective` + LinkedIn feed post (and optional Pulse).
-
----
-
-## Retrospective (next — after Apps #1–#4)
-
-**Working title:** I Built Four AI-Assisted Apps. Here's What Changed in How I Build Software.
-
-**Thesis:** Four apps, four AI postures (none / optional wellness / enterprise gates / consumer coach OS) — synthesize the engineering lessons across the series.
-
-**Draft:** `weidong-website/docs/linkedin-retrospective/ARTICLE.md`
+**Draft:** `weidong-website/docs/linkedin-retrospective/` (see `PLAYBOOK.md`, `ARTICLE.md`)
 
 **Deliverables:** Hub insight at `/insights/ai-in-action-retrospective` + LinkedIn feed post (and optional Pulse).
 
