@@ -1,6 +1,6 @@
 # Current State
 
-**As of:** July 2026  
+**As of:** July 31, 2026  
 **Owner:** Weidong Shi — Senior Technology Architect
 
 ## What exists today
@@ -65,7 +65,7 @@
 
 ## Feedback and validation stage
 
-Early. Priorities are polish, documentation, content, and learning which features people actually use.
+Early. Phase 1 launches (#1–#4) are complete. **Next:** retrospective article, then polish, feedback collection, and Phase 2 foundations.
 
 ## Source of truth
 

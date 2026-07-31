@@ -1,14 +1,14 @@
 # 30-Day Plan
 
-**Horizon:** ~July–early August 2026 (Phase 1 focus)  
-**Goal:** Credibility — polish, document, publish, learn. Keep demos free and educational. No full platform build.
+**Horizon:** July 2026 (Phase 1 closeout)  
+**Goal:** Credibility — polish, document, publish retrospective, learn. Keep demos free and educational. No full platform build.
 
 ## Outcomes
 
 1. SleepCheck feels tighter on UI, accessibility, responsiveness, and performance  
 2. Architecture for SleepCheck (and shared direction) is documented  
-3. AI in Action #2 hub article published; LinkedIn / optional video advanced  
-4. App READMEs improved (screenshots, setup, known issues, roadmap links)  
+3. AI in Action #2–#4 hub + LinkedIn published; **retrospective article next**  
+4. App READMEs improved (screenshots, setup, known issues, roadmap links) — open
 5. Capability maturity model defined (this repo)  
 6. Licensing / scope notes visible in roadmap  
 7. Initial user feedback collected  
@@ -29,10 +29,11 @@
 
 ### Content
 
-- [ ] LinkedIn pulse for AI in Action #2 (SleepCheck) per [../docs/content-strategy.md](../docs/content-strategy.md)  
-- [ ] Wellness disclaimer in article and app-facing copy  
+- [x] LinkedIn for AI in Action #2–#4 per [../docs/content-strategy.md](../docs/content-strategy.md)  
+- [ ] AI in Action retrospective (hub insight + LinkedIn)  
+- [ ] Wellness disclaimer in article and app-facing copy (verify on new content)  
 - [ ] 1–2 LinkedIn posts/week when quality allows  
-- [ ] Optional: short #2 video outline  
+- [ ] Optional: per-app short videos
 
 ### Feedback
 
@@ -48,4 +49,4 @@
 
 ## Exit criteria
 
-Phase 1 checklist in [../ROADMAP.md](../ROADMAP.md) has clear progress; SleepCheck hub article done; LinkedIn #2 optional work advancing; no out-of-scope commercial planning started here.
+Phase 1 checklist in [../ROADMAP.md](../ROADMAP.md) has clear progress; Apps #1–#4 live with hub + LinkedIn; retrospective article is the next content milestone; no out-of-scope commercial planning started here.

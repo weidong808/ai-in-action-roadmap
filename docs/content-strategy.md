@@ -46,36 +46,31 @@ Always answer: **What engineering lesson did building this teach?**
 
 **Possible subtitle:** How AI-assisted engineering helped transform a simple concept into a production-ready wellness application.
 
-**Status:** Hub article published. LinkedIn pulse / optional short video still open.
+**Status:** Hub article published. LinkedIn Pulse + Improve-loop feed post published.
 
-**Do not claim** SleepCheck invents a new category.
+---
 
-### Outline
+## Retrospective (next — after Apps #1–#4)
 
-1. **Why sleep** — personal/product motivation; wellness framing  
-2. **Defining a useful product** — player-first UX; narrow v1  
-3. **Requirements** — soundscapes, stories/TTS, breathing, streaks, PWA, local-first  
-4. **Architecture** — client structure, audio/PWA concerns, what stays local  
-5. **How AI helped** — scaffolding, iteration speed, UI exploration  
-6. **Where AI needed guardrails** — product judgment, a11y, performance, no medical claims  
-7. **Testing and deployment** — CI/CD, cloud hosting, release discipline  
-8. **Lessons learned** — process over hype  
-9. **What comes next** — polish, feedback, optional auth later  
-10. **Shared-pattern implications** — brand with RetireCheck; future reuse as engineering learning  
+**Working title:** I Built Four AI-Assisted Apps. Here's What Changed in How I Build Software.
 
-### Must include
+**Thesis:** Four apps, four AI postures (none / optional wellness / enterprise gates / consumer coach OS) — synthesize the engineering lessons across the series.
 
-- Live URL: https://sleepcheck.weidong-shi.com  
-- Hub: https://weidong-shi.com  
-- Wellness disclaimer: not medical advice / not a medical device  
-- Parent brand **AI in Action** shared with RetireCheck  
-- Mermaid-friendly architecture narrative (diagrams in this repo or article)
+**Draft:** `weidong-website/docs/linkedin-retrospective/ARTICLE.md`
 
-### Diagrams to attach or link
+**Deliverables:** Hub insight at `/insights/ai-in-action-retrospective` + LinkedIn feed post (and optional Pulse).
 
-- [../diagrams/product-journey.md](../diagrams/product-journey.md)  
-- [../diagrams/human-ai-responsibilities.md](../diagrams/human-ai-responsibilities.md)  
-- [../diagrams/platform-evolution.md](../diagrams/platform-evolution.md)  
+---
+
+## Retrospective (next — after Apps #1–#4)
+
+**Working title:** I Built Four AI-Assisted Apps. Here's What Changed in How I Build Software.
+
+**Thesis:** Four apps, four AI postures (none / optional wellness / enterprise gates / consumer coach OS) — synthesize the engineering lessons across the series.
+
+**Draft:** `weidong-website/docs/linkedin-retrospective/ARTICLE.md`
+
+**Deliverables:** Hub insight at `/insights/ai-in-action-retrospective` + LinkedIn feed post (and optional Pulse).
 
 ---
 

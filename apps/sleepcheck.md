@@ -24,13 +24,13 @@ Move the public story from “AI helped build an app” to “AI helped transfor
 - Live on custom domain  
 - Local-first; no authentication  
 - Public MIT educational showcase  
-- Hub article published; LinkedIn #2 / optional video still open  
+- Hub article published; LinkedIn #2 published (Pulse + Improve-loop feed post)  
 
 ## Near-term priorities
 
 1. Polish: UI, bugs, accessibility, responsive design, performance  
 2. Keep architecture docs current; improve README (screenshots, setup, known issues, roadmap)  
-3. Optional: LinkedIn pulse / short AI in Action #2 video  
+3. Optional: per-app short video  
 4. Gather feedback  
 5. Local history / sessions before optional login  
 6. Auth evaluation later — only with privacy/retention model  

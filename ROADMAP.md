@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Owner:** Weidong Shi — Senior Technology Architect  
-**Last updated:** July 2026
+**Last updated:** July 31, 2026
 
 ---
 
@@ -22,11 +22,15 @@ Not: design everything first. Not: force a platform before reuse is proven. Not:
 - [x] SleepCheck live — [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com)
 - [x] Cursor in Action / RetireCheck article published
 - [x] AI in Action series launched
-- [x] SleepCheck article published on hub ([weidong-shi.com/articles/ai-in-action-sleepcheck](https://weidong-shi.com/articles/ai-in-action-sleepcheck))
-- [x] SleepCheck LinkedIn pulse — [AI in Action #2](https://www.linkedin.com/pulse/ai-action-2-from-idea-sleepcheck-weidong-shi-0fwrc)
-- [x] AI in Action short videos on hub ([weidong-shi.com](https://weidong-shi.com))
+- [x] SleepCheck article published on hub ([/insights/ai-in-action-sleepcheck](https://weidong-shi.com/insights/ai-in-action-sleepcheck))
+- [x] SleepCheck LinkedIn — [AI in Action #2 Pulse](https://www.linkedin.com/pulse/ai-action-2-from-idea-sleepcheck-weidong-shi-0fwrc) + Improve-loop feed post
+- [x] AI Production Readiness Advisor live — [readiness.weidong-shi.com](https://readiness.weidong-shi.com) · hub + LinkedIn [#3](https://www.linkedin.com/posts/weidong-shi_ai-in-action-3-is-your-ai-system-ready-activity-7486042640698732544-43tn)
+- [x] HabitCheck live — [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) · hub case study + LinkedIn [#4](https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA)
+- [x] AI in Action short videos / launch cards on hub ([weidong-shi.com](https://weidong-shi.com))
 - [x] SleepCheck architecture documented ([SleepCheck/docs/architecture.md](https://github.com/weidong808/SleepCheck/blob/main/docs/architecture.md))
 - [x] Public roadmap repository launched ([ai-in-action-roadmap](https://github.com/weidong808/ai-in-action-roadmap))
+- [x] Cross-app design-system token sync (UI Round 2 Track A) across hub + four apps
+- [ ] AI in Action retrospective article (hub insight + LinkedIn) — **next content milestone**
 - [ ] Shared cross-app architecture synthesized beyond per-app docs
 - [ ] Optional authentication introduced (engineering learning milestone)
 - [ ] Capability maturity model reflected in app design (local-first → optional sync → advanced local insights)
@@ -43,11 +47,13 @@ Not: design everything first. Not: force a platform before reuse is proven. Not:
 - [ ] Document RetireCheck architecture gaps vs roadmap diagrams
 - [ ] Collect user feedback
 - [x] Publish AI in Action #2 on hub site
-- [ ] Publish AI in Action #2 on LinkedIn (+ optional short video)
+- [x] Publish AI in Action #2 on LinkedIn (Pulse + Improve-loop feed post)
+- [x] Publish AI in Action #3 and #4 on hub + LinkedIn
+- [ ] Publish AI in Action retrospective (four-app synthesis) on hub + LinkedIn
 - [ ] Improve application READMEs (screenshots, known issues, future features)
 - [x] Define capability maturity levels (see `docs/capability-maturity.md`)
 - [ ] GitHub improvements (CI badges, screenshots gallery)
-- [ ] Optional: AI in Action #2 short video
+- [ ] Optional: per-app short videos (RetireCheck done; SleepCheck / others open)
 
 ---
 
@@ -56,7 +62,8 @@ Not: design everything first. Not: force a platform before reuse is proven. Not:
 **Goal:** Extract what is genuinely shared. Nobody needs to “see” this work yet — future you will. Good portfolio signal: shared UI patterns, conventions, and deployment discipline.
 
 - [ ] Identify genuinely shared components (only after duplication is real)
-- [ ] Define common design system / shared theme direction
+- [x] Define common design system / shared theme direction (tokens + `DESIGN.md`; Round 2 Track A shipped)
+- [ ] UI Round 2 craft layer (skeletons, empty/error states, motion system) — in progress
 - [ ] Define shared user model (conceptual; implement later with optional auth)
 - [ ] Establish common telemetry / observability conventions
 - [ ] Establish common deployment patterns
@@ -108,10 +115,10 @@ Do not force a monorepo unless operational benefit is clear.
 
 | Sprint | Focus |
 |--------|--------|
-| 1 | SleepCheck polish (UI, bugs, a11y, responsive, performance) |
-| 2 | AI in Action #2 LinkedIn / optional video; architecture diagrams |
-| 3 | Local user history / sessions (no login yet) |
-| 4 | Move toward authentication evaluation and design |
+| 1 | **Retrospective article** (hub insight + LinkedIn) — synthesize Apps #1–#4 |
+| 2 | Phase 1 closeout: READMEs, feedback channel, remaining polish |
+| 3 | UI Round 2 craft (skeletons, empty states) + shared architecture doc |
+| 4 | Local user history / sessions (no login yet); auth evaluation prep |
 
 Content cadence: quality LinkedIn posts over volume (aim ~2/week when sustainable).
 
