@@ -11,6 +11,7 @@ AI in Action
 ├── SleepCheck                          ← live
 ├── AI Production Readiness Advisor     ← App #3 engineering showcase · live
 ├── HabitCheck                          ← App #4 · Better Living · live
+├── ArchLens AI                         ← App #5 · Enterprise architecture · live
 ├── FitnessCheck                        ← backlog
 ├── NutritionCheck                      ← backlog
 ├── MindCheck                           ← backlog
@@ -19,7 +20,8 @@ AI in Action
 ```
 
 - App #3 engineering showcase: [ai-production-readiness-advisor.md](./ai-production-readiness-advisor.md)  
-- App #4 Better Living (**live**): [MVP spec](../docs/discovery/habitcheck-02-mvp-specification.md) · [habitcheck.md](./habitcheck.md) · [architecture](./habitcheck-architecture.md)
+- App #4 Better Living (**live**): [habitcheck.md](./habitcheck.md)  
+- App #5 Enterprise architecture (**live**): [archlens-ai.md](./archlens-ai.md)
 
 ## Candidates
 

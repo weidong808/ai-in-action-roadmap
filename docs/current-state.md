@@ -14,6 +14,8 @@
 | AI Production Readiness Advisor | Live (App #3) | https://readiness.weidong-shi.com |
 | Readiness source | Public MIT | https://github.com/weidong808/ai-production-readiness-advisor |
 | HabitCheck | Live (App #4) | https://habitcheck.weidong-shi.com |
+| ArchLens AI | Live (App #5) | https://archlens.weidong-shi.com |
+| ArchLens AI source | Public | https://github.com/weidong808/archlens-ai |
 | Personal hub | Live | https://weidong-shi.com |
 | AI in Action #1 (RetireCheck) | Published | Hub + LinkedIn |
 | AI in Action #2 (SleepCheck) | Published | Hub + LinkedIn |
@@ -63,9 +65,17 @@
 - Hub case study: https://weidong-shi.com/work/habitcheck
 - LinkedIn #4: https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA
 
+### ArchLens AI
+
+- Evidence-first enterprise architecture modernization demo — verifier-gated findings from committed fixtures
+- Role: App #5 enterprise / architecture showcase (verifier gate before model proposer in slice 2)
+- Live: https://archlens.weidong-shi.com (fallback https://archlens-ai.vercel.app)
+- Repo: [archlens-ai](https://github.com/weidong808/archlens-ai)
+- Hub case study: https://weidong-shi.com/work/archlens
+
 ## Feedback and validation stage
 
-Early. Phase 1 launches (#1–#4) are complete. **Next:** retrospective article, then polish, feedback collection, and Phase 2 foundations.
+Early. Phase 1 launches (#1–#5) are complete. **Next:** LinkedIn #5 + retrospective refresh, then slice 2 (model proposer).
 
 ## Source of truth
 

@@ -34,6 +34,7 @@ The series demonstrates how experienced engineers and architects can use AI-assi
 | SleepCheck | https://sleepcheck.weidong-shi.com | https://github.com/weidong808/SleepCheck |
 | AI Production Readiness Advisor | https://readiness.weidong-shi.com | https://github.com/weidong808/ai-production-readiness-advisor |
 | HabitCheck | https://habitcheck.weidong-shi.com | https://github.com/weidong808/HabitCheck |
+| ArchLens AI | https://archlens.weidong-shi.com | https://github.com/weidong808/archlens-ai |
 
 **Hub:** https://weidong-shi.com  
 **Roadmap repo:** https://github.com/weidong808/ai-in-action-roadmap  

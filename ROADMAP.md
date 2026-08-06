@@ -26,6 +26,7 @@ Not: design everything first. Not: force a platform before reuse is proven. Not:
 - [x] SleepCheck LinkedIn — [AI in Action #2 Pulse](https://www.linkedin.com/pulse/ai-action-2-from-idea-sleepcheck-weidong-shi-0fwrc) + Improve-loop feed post
 - [x] AI Production Readiness Advisor live — [readiness.weidong-shi.com](https://readiness.weidong-shi.com) · hub + LinkedIn [#3](https://www.linkedin.com/posts/weidong-shi_ai-in-action-3-is-your-ai-system-ready-activity-7486042640698732544-43tn)
 - [x] HabitCheck live — [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) · hub case study + LinkedIn [#4](https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA)
+- [x] ArchLens AI live — [archlens.weidong-shi.com](https://archlens.weidong-shi.com) · hub case study [/work/archlens](https://weidong-shi.com/work/archlens)
 - [x] AI in Action short videos / launch cards on hub ([weidong-shi.com](https://weidong-shi.com))
 - [x] SleepCheck architecture documented ([SleepCheck/docs/architecture.md](https://github.com/weidong808/SleepCheck/blob/main/docs/architecture.md))
 - [x] Public roadmap repository launched ([ai-in-action-roadmap](https://github.com/weidong808/ai-in-action-roadmap))

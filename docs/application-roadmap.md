@@ -8,7 +8,8 @@ AI in Action (educational portfolio)
 ├── RetireCheck                         ← live
 ├── SleepCheck                          ← live
 ├── AI Production Readiness Advisor     ← App #3 live (readiness.weidong-shi.com)
-├── HabitCheck                          ← App #4 P0–P7 code complete (deploy pending)
+├── HabitCheck                          ← App #4 live
+├── ArchLens AI                         ← App #5 live (archlens.weidong-shi.com)
 └── Future Check / domain apps          ← backlog
 ```
 
@@ -21,7 +22,8 @@ AI in Action (educational portfolio)
 | [RetireCheck](../apps/retirecheck.md) | Live | End-to-end AI-assisted delivery with serious domain logic |
 | [SleepCheck](../apps/sleepcheck.md) | Live | Idea → product thinking → maintainable wellness PWA |
 | [AI Production Readiness Advisor](../apps/ai-production-readiness-advisor.md) | Live | Deterministic readiness gates + advisory LLM narrative / evals |
-| [HabitCheck](../apps/habitcheck.md) | P0–P7 code complete | Weekly recovery + AI-forward coach OS · [repo](https://github.com/weidong808/HabitCheck) · public deploy pending |
+| [HabitCheck](../apps/habitcheck.md) | Live | Weekly recovery + AI-forward coach OS |
+| [ArchLens AI](../apps/archlens-ai.md) | Live | Verifier-gated architecture evidence · fixture-backed demo |
 
 ## Near-term app work
 

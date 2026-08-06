@@ -2,7 +2,7 @@
 
 Public architecture and delivery roadmap for the **AI in Action** series —
 production-ready personal case studies including RetireCheck, SleepCheck,
-AI Production Readiness Advisor, HabitCheck, and optional shared technical
+AI Production Readiness Advisor, HabitCheck, ArchLens AI, and optional shared technical
 foundations.
 
 This repository is documentation only. It is the educational and architectural source of truth. Application source code lives in separate repositories.
@@ -53,15 +53,17 @@ See [VISION.md](./VISION.md) for the full statement. Scope boundary: [docs/scope
 | **SleepCheck** | Live | [sleepcheck.weidong-shi.com](https://sleepcheck.weidong-shi.com) | [SleepCheck](https://github.com/weidong808/SleepCheck) |
 | **AI Production Readiness Advisor** | Live | [readiness.weidong-shi.com](https://readiness.weidong-shi.com) | [ai-production-readiness-advisor](https://github.com/weidong808/ai-production-readiness-advisor) |
 | **HabitCheck** | Live (App #4) | [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) | [HabitCheck](https://github.com/weidong808/HabitCheck) |
+| **ArchLens AI** | Live (App #5) | [archlens.weidong-shi.com](https://archlens.weidong-shi.com) | [archlens-ai](https://github.com/weidong808/archlens-ai) |
 | **Personal hub** | Live | [weidong-shi.com](https://weidong-shi.com) | Personal site (case studies & articles) |
 
-App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (#4 Better Living · discovery) · [apps/future-apps.md](./apps/future-apps.md)
+App notes: [apps/retirecheck.md](./apps/retirecheck.md) · [apps/sleepcheck.md](./apps/sleepcheck.md) · [apps/ai-production-readiness-advisor.md](./apps/ai-production-readiness-advisor.md) (#3 engineering showcase) · [apps/habitcheck.md](./apps/habitcheck.md) (#4 Better Living) · [apps/archlens-ai.md](./apps/archlens-ai.md) (#5 enterprise architecture) · [apps/future-apps.md](./apps/future-apps.md)
 
 ## Current state (summary)
 
-- RetireCheck, SleepCheck, AI Production Readiness Advisor, and HabitCheck are live educational demos
+- RetireCheck, SleepCheck, AI Production Readiness Advisor, HabitCheck, and **ArchLens AI** are live educational demos
+- ArchLens AI (AI in Action #5) **live** at [archlens.weidong-shi.com](https://archlens.weidong-shi.com) — [hub case study](https://weidong-shi.com/work/archlens)
 - HabitCheck (AI in Action #4) **live** at [habitcheck.weidong-shi.com](https://habitcheck.weidong-shi.com) — [hub case study](https://weidong-shi.com/work/habitcheck) + [LinkedIn #4](https://www.linkedin.com/posts/weidong-shi_ai-in-action-4-i-used-to-lie-to-my-habit-activity-7486417146093137922-klvA)
-- AI in Action content series is active across hub + LinkedIn (#1–#4 live)
+- AI in Action content series is active across hub + LinkedIn (#1–#4 live; #5 hub case study live)
 - No authentication yet; Check apps are local-first
 - Shared technical capabilities are planned as learning milestones after reuse is proven
 - Early feedback stage
